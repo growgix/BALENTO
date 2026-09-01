@@ -1,0 +1,166 @@
+/* ==========================================================================
+   BALENTO — Custom Stylesheet & Animations
+   ========================================================================== */
+
+/* Smooth, 60fps Compositor-Only Reveal Animations */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Image Hover Crossfade */
+.image-hover-wrapper .primary-image,
+.image-hover-wrapper .hover-image {
+    transition: opacity 0.5s ease, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.image-hover-wrapper:hover .hover-image {
+    opacity: 1;
+}
+.image-hover-wrapper:hover .primary-image {
+    opacity: 0;
+}
+.image-hover-wrapper:hover img {
+    transform: scale(1.025);
+}
+
+/* Mega Menu Dropdown Transition */
+.mega-menu-wrapper:hover .mega-menu,
+.mega-menu-wrapper:focus-within .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.mega-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
+    pointer-events: none;
+}
+
+/* Slide-out Drawers Backdrop and Panels */
+.drawer-backdrop {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.drawer-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.drawer-panel {
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.drawer-panel.active {
+    transform: translateX(0);
+}
+
+/* Center Lightbox Modals */
+.modal-panel {
+    opacity: 0;
+    transform: scale(0.98) translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.modal-panel.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* Mobile Nav Curtain */
+.mobile-curtain {
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mobile-curtain.active {
+    transform: translateX(0);
+}
+
+/* Sticky Bottom Floating Product Bar */
+#sticky-product-bar {
+    transform: translateY(120%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#sticky-product-bar.visible {
+    transform: translateY(0);
+}
+
+/* Micro-animations */
+.wishlist-heart {
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s ease;
+}
+.wishlist-heart:active {
+    transform: scale(1.3);
+}
+
+/* Toast Notification Animation */
+#toast-notification {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    pointer-events: none;
+}
+#toast-notification.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Monogram Deboss & Foil Effects */
+.monogram-preview-gold {
+    color: #d4af37;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    letter-spacing: 0.25em;
+}
+.monogram-preview-blind {
+    color: rgba(255,255,255,0.15);
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.8), 1px 1px 1px rgba(255,255,255,0.2);
+    letter-spacing: 0.25em;
+}
+.monogram-preview-silver {
+    color: #e5e5e5;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    letter-spacing: 0.25em;
+}
+
+/* Accessible Focus Rings */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid #5f5e5b;
+    outline-offset: 2px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+    .fade-in-section {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* Elegant Scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #f1edec;
+}
+::-webkit-scrollbar-thumb {
+    background: #c8c7be;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #787770;
+}
