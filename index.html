@@ -60,7 +60,8 @@
                         "accent-leather-black": "#1c1b1b",
                         "accent-leather-cognac": "#8B5A2B",
                         "accent-leather-coffee": "#4A3B32",
-                        "accent-sage": "#657e62"
+                        "accent-sage": "#577a53",
+                        "accent-gold": "#D4AF37"
                     },
                     borderRadius: {
                         "DEFAULT": "0px",
@@ -187,6 +188,15 @@
             transform: translateX(0);
         }
 
+        /* Sticky bottom floating product bar */
+        #sticky-product-bar {
+            transform: translateY(120%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #sticky-product-bar.visible {
+            transform: translateY(0);
+        }
+
         /* Micro-animations */
         .wishlist-heart {
             transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s ease;
@@ -195,8 +205,38 @@
             transform: scale(1.3);
         }
 
+        /* Toast notification animation */
+        #toast-notification {
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+            pointer-events: none;
+        }
+        #toast-notification.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Monogram Deboss effect */
+        .monogram-preview-gold {
+            color: #d4af37;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+            letter-spacing: 0.25em;
+        }
+        .monogram-preview-blind {
+            color: rgba(255,255,255,0.15);
+            text-shadow: -1px -1px 1px rgba(0,0,0,0.8), 1px 1px 1px rgba(255,255,255,0.2);
+            letter-spacing: 0.25em;
+        }
+        .monogram-preview-silver {
+            color: #e5e5e5;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+            letter-spacing: 0.25em;
+        }
+
         /* Accessible focus rings */
-        a:focus-visible, button:focus-visible, input:focus-visible {
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
             outline: 2px solid #5f5e5b;
             outline-offset: 2px;
         }
@@ -238,7 +278,7 @@
     <aside aria-label="Announcement" class="bg-secondary text-on-secondary py-2.5 text-center border-b border-outline-variant relative z-50 transition-colors">
         <div class="max-w-container-max mx-auto px-gutter flex justify-center items-center gap-2">
             <p class="font-label-caps text-[11px] md:text-label-caps uppercase tracking-[0.2em] font-medium">
-                COMPLIMENTARY SHIPPING ON ALL ORDERS OVER ₹2,000
+                COMPLIMENTARY SHIPPING ON ALL ORDERS OVER ₹2,000 • USE CODE <span class="underline font-bold">WELCOME10</span> FOR 10% OFF
             </p>
         </div>
     </aside>
@@ -291,16 +331,19 @@
                                 <span class="font-label-caps text-[10px] text-tertiary uppercase tracking-widest block mb-1">Editor's Pick</span>
                                 <p class="font-headline-sm text-[16px] text-on-surface leading-snug">The Verona Tote in Cognac</p>
                             </div>
-                            <a href="#signature" class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface underline hover:opacity-70 mt-3 block">Explore Details →</a>
+                            <button onclick="openQuickView('verona-tote')" class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface underline hover:opacity-70 mt-3 text-left">Quick View →</button>
                         </div>
                     </div>
                 </div>
 
+                <a class="font-nav-link text-nav-link uppercase text-secondary hover:text-on-surface transition-colors cursor-pointer h-full flex items-center tracking-widest relative after:content-[''] after:absolute after:bottom-3 after:left-0 after:w-0 hover:after:w-full after:h-[1px] after:bg-on-surface after:transition-all" href="#compare">
+                    Bag Guide
+                </a>
                 <a class="font-nav-link text-nav-link uppercase text-secondary hover:text-on-surface transition-colors cursor-pointer h-full flex items-center tracking-widest relative after:content-[''] after:absolute after:bottom-3 after:left-0 after:w-0 hover:after:w-full after:h-[1px] after:bg-on-surface after:transition-all" href="#color-story">
                     Color Story
                 </a>
-                <a class="font-nav-link text-nav-link uppercase text-secondary hover:text-on-surface transition-colors cursor-pointer h-full flex items-center tracking-widest relative after:content-[''] after:absolute after:bottom-3 after:left-0 after:w-0 hover:after:w-full after:h-[1px] after:bg-on-surface after:transition-all" href="#craft">
-                    Our Craft
+                <a class="font-nav-link text-nav-link uppercase text-secondary hover:text-on-surface transition-colors cursor-pointer h-full flex items-center tracking-widest relative after:content-[''] after:absolute after:bottom-3 after:left-0 after:w-0 hover:after:w-full after:h-[1px] after:bg-on-surface after:transition-all" href="#monogram">
+                    Atelier
                 </a>
             </nav>
 
@@ -311,13 +354,13 @@
                     <span class="material-symbols-outlined font-light text-[24px]">search</span>
                 </button>
                 
-                <!-- Account Button -->
-                <button id="account-btn" aria-label="Account Profile" class="cursor-pointer hover:text-on-surface transition-colors p-1 hidden sm:flex items-center" title="Account">
-                    <span class="material-symbols-outlined font-light text-[24px]">person</span>
+                <!-- Info / Help Modal Trigger -->
+                <button onclick="toggleInfoModal(true, 'care')" aria-label="Materials and Care" class="cursor-pointer hover:text-on-surface transition-colors p-1 hidden sm:flex items-center" title="Materials & Care">
+                    <span class="material-symbols-outlined font-light text-[24px]">verified</span>
                 </button>
                 
                 <!-- Wishlist Button with Counter Badge -->
-                <button id="wishlist-btn" aria-label="View Wishlist" class="cursor-pointer hover:text-on-surface transition-colors p-1 relative flex items-center">
+                <button id="wishlist-btn" onclick="toggleWishlistDrawer(true)" aria-label="View Wishlist" class="cursor-pointer hover:text-on-surface transition-colors p-1 relative flex items-center">
                     <span class="material-symbols-outlined font-light text-[24px]" id="nav-wishlist-icon">favorite_border</span>
                     <span id="wishlist-count-badge" class="absolute -top-1 -right-1.5 bg-tertiary text-on-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-medium opacity-0 transition-opacity scale-90">0</span>
                 </button>
@@ -357,8 +400,10 @@
                         </div>
                     </div>
 
+                    <a href="#compare" class="mobile-nav-link font-nav-link text-[16px] uppercase tracking-widest text-on-surface" onclick="toggleMobileMenu(false);">Silhouette Guide</a>
                     <a href="#signature" class="mobile-nav-link font-nav-link text-[16px] uppercase tracking-widest text-on-surface" onclick="toggleMobileMenu(false);">Spotlight</a>
                     <a href="#color-story" class="mobile-nav-link font-nav-link text-[16px] uppercase tracking-widest text-on-surface" onclick="toggleMobileMenu(false);">Color Story</a>
+                    <a href="#monogram" class="mobile-nav-link font-nav-link text-[16px] uppercase tracking-widest text-on-surface" onclick="toggleMobileMenu(false);">Monogram Atelier</a>
                     <a href="#craft" class="mobile-nav-link font-nav-link text-[16px] uppercase tracking-widest text-on-surface" onclick="toggleMobileMenu(false);">Our Craft</a>
                 </nav>
             </div>
@@ -421,7 +466,7 @@
             </div>
         </section>
 
-        <!-- 5. Product Collection Grid with Interactive Filters -->
+        <!-- 5. Product Collection Grid with Interactive Filters & Quick View -->
         <section class="py-xl px-lg max-w-container-max mx-auto fade-in-section" id="collection">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-xl border-b border-outline-variant pb-6 gap-6">
                 <div>
@@ -472,22 +517,105 @@
             </div>
         </section>
 
+        <!-- 6B. NEW SECTION: Silhouette Comparison & Fit Guide -->
+        <section id="compare" class="py-xxl px-lg max-w-container-max mx-auto border-t border-outline-variant/60 fade-in-section">
+            <div class="text-center max-w-2xl mx-auto mb-xl">
+                <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.2em] block mb-2">Architectural Breakdown</span>
+                <h2 class="font-display-sm text-[32px] md:text-display-sm uppercase">FIND YOUR PERFECT FIT</h2>
+                <p class="font-body-md text-secondary font-light">Compare dimensions, weights, and capacities across our 5 signature silhouettes.</p>
+            </div>
+
+            <!-- Comparison Responsive Table / Matrix -->
+            <div class="overflow-x-auto border border-outline-variant">
+                <table class="w-full text-left border-collapse min-w-[700px]">
+                    <thead>
+                        <tr class="bg-surface-container border-b border-outline-variant text-on-surface font-label-caps text-[11px] uppercase tracking-wider">
+                            <th class="p-4">Silhouette</th>
+                            <th class="p-4">Best For</th>
+                            <th class="p-4">Capacity</th>
+                            <th class="p-4">Weight</th>
+                            <th class="p-4">Price</th>
+                            <th class="p-4 text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-outline-variant/60 font-body-md text-sm">
+                        <!-- Verona -->
+                        <tr class="hover:bg-surface-container-low transition-colors">
+                            <td class="p-4 font-semibold text-on-surface">Verona Tote</td>
+                            <td class="p-4 text-secondary">Work &amp; Commute</td>
+                            <td class="p-4 text-on-surface">14" MacBook + Daily Kit</td>
+                            <td class="p-4 text-secondary">680g</td>
+                            <td class="p-4 font-medium text-on-surface">₹2,499</td>
+                            <td class="p-4 text-right">
+                                <button onclick="openQuickView('verona-tote')" class="underline font-label-caps text-[11px] uppercase hover:text-on-surface">Details →</button>
+                            </td>
+                        </tr>
+                        <!-- Elara -->
+                        <tr class="hover:bg-surface-container-low transition-colors">
+                            <td class="p-4 font-semibold text-on-surface">Elara Shoulder</td>
+                            <td class="p-4 text-secondary">Day-to-Night Elegance</td>
+                            <td class="p-4 text-on-surface">11" iPad &amp; Phone</td>
+                            <td class="p-4 text-secondary">420g</td>
+                            <td class="p-4 font-medium text-on-surface">₹2,299</td>
+                            <td class="p-4 text-right">
+                                <button onclick="openQuickView('elara-shoulder')" class="underline font-label-caps text-[11px] uppercase hover:text-on-surface">Details →</button>
+                            </td>
+                        </tr>
+                        <!-- Cora -->
+                        <tr class="hover:bg-surface-container-low transition-colors">
+                            <td class="p-4 font-semibold text-on-surface">Cora Crossbody</td>
+                            <td class="p-4 text-secondary">Hands-Free Daily Run</td>
+                            <td class="p-4 text-on-surface">Essentials &amp; Cards</td>
+                            <td class="p-4 text-secondary">360g</td>
+                            <td class="p-4 font-medium text-on-surface">₹2,099</td>
+                            <td class="p-4 text-right">
+                                <button onclick="openQuickView('cora-crossbody')" class="underline font-label-caps text-[11px] uppercase hover:text-on-surface">Details →</button>
+                            </td>
+                        </tr>
+                        <!-- Alba -->
+                        <tr class="hover:bg-surface-container-low transition-colors">
+                            <td class="p-4 font-semibold text-on-surface">Alba Hobo</td>
+                            <td class="p-4 text-secondary">Weekend Creative Outings</td>
+                            <td class="p-4 text-on-surface">Journal, Water Bottle &amp; Kit</td>
+                            <td class="p-4 text-secondary">510g</td>
+                            <td class="p-4 font-medium text-on-surface">₹2,399</td>
+                            <td class="p-4 text-right">
+                                <button onclick="openQuickView('alba-hobo')" class="underline font-label-caps text-[11px] uppercase hover:text-on-surface">Details →</button>
+                            </td>
+                        </tr>
+                        <!-- Mira -->
+                        <tr class="hover:bg-surface-container-low transition-colors">
+                            <td class="p-4 font-semibold text-on-surface">Mira Structured</td>
+                            <td class="p-4 text-secondary">Formal Dinners &amp; Events</td>
+                            <td class="p-4 text-on-surface">Compact Essentials &amp; Makeup</td>
+                            <td class="p-4 text-secondary">580g</td>
+                            <td class="p-4 font-medium text-on-surface">₹2,499</td>
+                            <td class="p-4 text-right">
+                                <button onclick="openQuickView('mira-structured')" class="underline font-label-caps text-[11px] uppercase hover:text-on-surface">Details →</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
         <!-- 7. Signature Product Feature Spotlight -->
         <section id="signature" class="py-xxl px-lg max-w-container-max mx-auto fade-in-section">
             <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
                 <!-- Visual Showcase -->
-                <div class="flex-1 w-full relative aspect-[4/5] bg-surface-container overflow-hidden border border-outline-variant/60">
+                <div class="flex-1 w-full relative aspect-[4/5] bg-surface-container overflow-hidden border border-outline-variant/60 cursor-pointer" onclick="openQuickView('verona-tote')">
                     <img 
                         src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=1200&q=80" 
                         alt="Verona Tote signature details and craftsmanship"
-                        class="w-full h-full object-cover object-center"
+                        class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
                         loading="lazy"
                         decoding="async"
                         width="1200"
                         height="1500"
                     />
-                    <div class="absolute bottom-4 left-4 bg-surface/90 backdrop-blur-md px-4 py-2 border border-outline-variant text-[11px] font-label-caps uppercase tracking-widest text-on-surface">
-                        Signature Edition • The Verona
+                    <div class="absolute bottom-4 left-4 bg-surface/90 backdrop-blur-md px-4 py-2 border border-outline-variant text-[11px] font-label-caps uppercase tracking-widest text-on-surface flex items-center gap-2">
+                        <span>Signature Edition • The Verona</span>
+                        <span class="material-symbols-outlined text-[14px]">open_in_new</span>
                     </div>
                 </div>
 
@@ -521,9 +649,12 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-4 flex-wrap">
                         <button onclick="quickAddById('verona-tote')" class="bg-on-surface text-surface font-label-caps text-label-caps uppercase px-xl py-md border border-on-surface hover:bg-surface hover:text-on-surface transition-all duration-300">
                             Add Verona to Bag • ₹2,499
+                        </button>
+                        <button onclick="openQuickView('verona-tote')" class="bg-transparent text-on-surface font-label-caps text-label-caps uppercase px-xl py-md border border-outline-variant hover:border-on-surface transition-all duration-300">
+                            Quick View
                         </button>
                     </div>
                 </div>
@@ -644,6 +775,101 @@
                 <div id="color-story-desc" class="max-w-xl mx-auto bg-surface p-6 border border-outline-variant text-center transition-all duration-300">
                     <p class="font-body-md text-on-surface font-medium mb-1" id="color-story-title">Obsidian Black • The Architectural Classic</p>
                     <p class="font-body-md text-secondary text-sm font-light" id="color-story-text">Sleek, commanding, and timeless. Pairs effortlessly with tailored trench coats, monochrome suits, and casual denim alike.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10B. NEW SECTION: Interactive Bespoke Monogramming Atelier -->
+        <section id="monogram" class="py-xxl px-lg max-w-container-max mx-auto fade-in-section">
+            <div class="bg-surface-container border border-outline-variant p-8 md:p-12">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <!-- Preview Tag Display -->
+                    <div class="flex-1 flex justify-center w-full">
+                        <div class="relative w-64 h-80 bg-accent-leather-coffee border border-outline-variant/60 shadow-xl flex flex-col items-center justify-center p-6 text-center">
+                            <!-- Brass Rivet -->
+                            <div class="w-4 h-4 rounded-full bg-accent-gold shadow-inner mb-6 border border-on-surface/30"></div>
+                            
+                            <span class="font-label-caps text-[10px] text-[#e5e2df]/60 uppercase tracking-[0.25em] mb-4">BALENTO ATELIER</span>
+                            
+                            <!-- Real-Time Embossed Initials -->
+                            <div id="monogram-render" class="font-display-lg text-[44px] uppercase my-auto monogram-preview-gold tracking-widest">
+                                B.M
+                            </div>
+
+                            <span class="font-label-caps text-[9px] text-[#e5e2df]/50 uppercase tracking-wider mt-4">HAND-BURNISHED CALFSKIN</span>
+                        </div>
+                    </div>
+
+                    <!-- Customizer Form -->
+                    <div class="flex-1 w-full text-left">
+                        <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.2em] mb-2 block">Bespoke Monogramming</span>
+                        <h2 class="font-display-sm text-[30px] md:text-[36px] uppercase mb-3">MAKE IT YOURS.</h2>
+                        <p class="font-body-md text-secondary mb-6 font-light text-sm sm:text-base leading-relaxed">
+                            Personalize your Balento leather bag with complimentary hand-embossed initials. Stamped with artisanal precision in our Bengaluru atelier.
+                        </p>
+
+                        <!-- Input -->
+                        <div class="mb-4">
+                            <label for="monogram-input" class="font-label-caps text-[11px] uppercase tracking-wider block mb-1.5 font-semibold">Your Initials (Max 3 Characters)</label>
+                            <input 
+                                id="monogram-input" 
+                                type="text" 
+                                maxlength="3" 
+                                value="BM" 
+                                oninput="updateMonogramPreview()" 
+                                class="w-full sm:w-64 bg-surface-container-lowest border border-outline-variant p-3 font-display-sm text-[20px] uppercase tracking-widest focus:border-on-surface focus:outline-none"
+                            />
+                        </div>
+
+                        <!-- Foil Selector -->
+                        <div class="mb-6">
+                            <label class="font-label-caps text-[11px] uppercase tracking-wider block mb-2 font-semibold">Embossing Finish</label>
+                            <div class="flex gap-3">
+                                <button onclick="setMonogramFoil('gold')" class="monogram-foil-btn active font-label-caps text-[11px] uppercase px-4 py-2 border border-on-surface bg-on-surface text-surface">Gold Foil</button>
+                                <button onclick="setMonogramFoil('blind')" class="monogram-foil-btn font-label-caps text-[11px] uppercase px-4 py-2 border border-outline-variant text-secondary hover:border-on-surface hover:text-on-surface">Blind Deboss</button>
+                                <button onclick="setMonogramFoil('silver')" class="monogram-foil-btn font-label-caps text-[11px] uppercase px-4 py-2 border border-outline-variant text-secondary hover:border-on-surface hover:text-on-surface">Silver Foil</button>
+                            </div>
+                        </div>
+
+                        <button onclick="addMonogrammedTagToCart()" class="bg-on-surface text-surface font-label-caps text-label-caps uppercase px-xl py-3.5 border border-on-surface hover:bg-surface hover:text-on-surface transition-all">
+                            Add Monogrammed Luggage Tag • Complimentary
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10C. NEW SECTION: Press & Media Mentions (As Seen In) -->
+        <section class="py-xxl px-lg max-w-container-max mx-auto border-t border-outline-variant/60 fade-in-section">
+            <div class="text-center max-w-2xl mx-auto mb-xl">
+                <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.2em] block mb-2">Critical Acclaim</span>
+                <h2 class="font-display-sm text-[30px] md:text-display-sm uppercase">AS SEEN IN</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="p-6 border border-outline-variant/60 bg-surface-container-low flex flex-col justify-between">
+                    <span class="font-display-sm text-[22px] tracking-[0.2em] uppercase font-bold text-on-surface mb-4">VOGUE</span>
+                    <p class="font-body-md text-secondary text-sm italic font-light leading-relaxed">
+                        "The understated quiet luxury label reshaping everyday workwear for modern India."
+                    </p>
+                </div>
+                <div class="p-6 border border-outline-variant/60 bg-surface-container-low flex flex-col justify-between">
+                    <span class="font-display-sm text-[22px] tracking-[0.2em] uppercase font-bold text-on-surface mb-4">GQ</span>
+                    <p class="font-body-md text-secondary text-sm italic font-light leading-relaxed">
+                        "Balento delivers architectural leather craftsmanship without the 10x traditional markup."
+                    </p>
+                </div>
+                <div class="p-6 border border-outline-variant/60 bg-surface-container-low flex flex-col justify-between">
+                    <span class="font-display-sm text-[22px] tracking-[0.2em] uppercase font-bold text-on-surface mb-4">ELLE</span>
+                    <p class="font-body-md text-secondary text-sm italic font-light leading-relaxed">
+                        "A masterclass in daily essentials designed to transition from boardroom to weekend brunch."
+                    </p>
+                </div>
+                <div class="p-6 border border-outline-variant/60 bg-surface-container-low flex flex-col justify-between">
+                    <span class="font-display-sm text-[22px] tracking-[0.2em] uppercase font-bold text-on-surface mb-4">GRAZIA</span>
+                    <p class="font-body-md text-secondary text-sm italic font-light leading-relaxed">
+                        "The definitive Indian leather brand to watch in 2026 for enduring, logo-free style."
+                    </p>
                 </div>
             </div>
         </section>
@@ -773,7 +999,7 @@
                     </button>
                 </form>
                 <p id="newsletter-feedback" class="font-label-caps text-[11px] text-accent-sage mt-3 uppercase tracking-wider hidden">
-                    ✓ Welcome to Balento. Please check your inbox.
+                    ✓ Welcome to Balento. Please check your inbox for your welcome privilege.
                 </p>
             </div>
         </section>
@@ -813,9 +1039,9 @@
                 <h3 class="font-label-caps text-label-caps text-tertiary uppercase tracking-widest font-semibold">About</h3>
                 <nav class="flex flex-col gap-2 text-sm">
                     <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#about">Our Story</a>
-                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#craft">Materials &amp; Care</a>
-                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#craft">Sustainability</a>
-                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#about">Careers</a>
+                    <button onclick="toggleInfoModal(true, 'care')" class="text-left font-body-md text-secondary hover:text-on-surface transition-colors">Materials &amp; Care</button>
+                    <button onclick="toggleInfoModal(true, 'sustainability')" class="text-left font-body-md text-secondary hover:text-on-surface transition-colors">Sustainability</button>
+                    <button onclick="toggleInfoModal(true, 'careers')" class="text-left font-body-md text-secondary hover:text-on-surface transition-colors">Careers</button>
                 </nav>
             </div>
 
@@ -823,10 +1049,10 @@
             <div class="flex flex-col gap-md">
                 <h3 class="font-label-caps text-label-caps text-tertiary uppercase tracking-widest font-semibold">Help</h3>
                 <nav class="flex flex-col gap-2 text-sm">
-                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#help">FAQ</a>
-                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#shipping">Shipping &amp; Returns</a>
-                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#track">Track Order</a>
-                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#contact">Contact Us</a>
+                    <button onclick="toggleInfoModal(true, 'faq')" class="text-left font-body-md text-secondary hover:text-on-surface transition-colors">FAQ</button>
+                    <button onclick="toggleInfoModal(true, 'shipping')" class="text-left font-body-md text-secondary hover:text-on-surface transition-colors">Shipping &amp; Returns</button>
+                    <button onclick="toggleInfoModal(true, 'track')" class="text-left font-body-md text-secondary hover:text-on-surface transition-colors">Track Order</button>
+                    <button onclick="toggleInfoModal(true, 'contact')" class="text-left font-body-md text-secondary hover:text-on-surface transition-colors">Contact Us</button>
                 </nav>
             </div>
         </div>
@@ -834,11 +1060,28 @@
         <div class="border-t border-outline-variant px-lg py-md w-full max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-md">
             <p class="font-label-caps text-[11px] text-secondary uppercase">© 2026 BALENTO. All Rights Reserved.</p>
             <div class="flex gap-md">
-                <a class="font-label-caps text-[11px] text-secondary hover:text-on-surface transition-colors uppercase" href="#privacy">Privacy Policy</a>
-                <a class="font-label-caps text-[11px] text-secondary hover:text-on-surface transition-colors uppercase" href="#terms">Terms of Service</a>
+                <button onclick="toggleInfoModal(true, 'privacy')" class="font-label-caps text-[11px] text-secondary hover:text-on-surface transition-colors uppercase">Privacy Policy</button>
+                <button onclick="toggleInfoModal(true, 'terms')" class="font-label-caps text-[11px] text-secondary hover:text-on-surface transition-colors uppercase">Terms of Service</button>
             </div>
         </div>
     </footer>
+
+    <!-- ====================================================== -->
+    <!-- STICKY FLOATING QUICK ADD BAR (Scroll Activated)       -->
+    <!-- ====================================================== -->
+    <div id="sticky-product-bar" class="fixed bottom-0 left-0 right-0 bg-surface/95 backdrop-blur-md border-t border-outline-variant py-3 px-6 z-40 shadow-lg flex justify-between items-center max-w-container-max mx-auto">
+        <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=120&q=80" alt="Verona Tote" class="w-10 h-12 object-cover border border-outline-variant hidden sm:block" />
+            <div>
+                <span class="font-label-caps text-[12px] uppercase text-on-surface font-semibold block">The Verona Tote</span>
+                <span class="font-body-md text-xs text-secondary">₹2,499 • Complimentary Shipping</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="openQuickView('verona-tote')" class="hidden md:block font-label-caps text-[11px] uppercase text-secondary hover:text-on-surface px-3 py-2 border border-outline-variant">Quick View</button>
+            <button onclick="quickAddById('verona-tote')" class="bg-on-surface text-surface font-label-caps text-[11px] uppercase px-5 py-2.5 hover:bg-surface hover:text-on-surface border border-on-surface transition-all">Add to Bag</button>
+        </div>
+    </div>
 
     <!-- ====================================================== -->
     <!-- INTERACTIVE SLIDE-OUT CART DRAWER                     -->
@@ -883,11 +1126,171 @@
                     <span class="font-body-md text-secondary">Shipping</span>
                     <span id="cart-shipping-status" class="font-label-caps uppercase text-secondary">Calculated above</span>
                 </div>
-                <button id="checkout-btn" class="w-full bg-on-surface text-surface font-label-caps text-label-caps uppercase py-4 hover:bg-surface hover:text-on-surface border border-on-surface transition-all duration-300 font-medium">
+                <button onclick="openCheckoutModal()" class="w-full bg-on-surface text-surface font-label-caps text-label-caps uppercase py-4 hover:bg-surface hover:text-on-surface border border-on-surface transition-all duration-300 font-medium">
                     Proceed to Checkout
                 </button>
             </div>
         </aside>
+    </div>
+
+    <!-- ====================================================== -->
+    <!-- INTERACTIVE SLIDE-OUT WISHLIST DRAWER                  -->
+    <!-- ====================================================== -->
+    <div id="wishlist-backdrop" class="fixed inset-0 bg-on-surface/50 z-50 drawer-backdrop" aria-hidden="true">
+        <aside id="wishlist-drawer" role="dialog" aria-modal="true" aria-labelledby="wishlist-title" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-surface p-6 sm:p-8 shadow-2xl flex flex-col justify-between drawer-panel border-l border-outline-variant z-50">
+            <div>
+                <div class="flex justify-between items-center pb-4 border-b border-outline-variant">
+                    <div class="flex items-center gap-2">
+                        <h2 id="wishlist-title" class="font-display-sm text-[22px] uppercase">Wishlist</h2>
+                        <span id="wishlist-header-count" class="font-label-caps text-[11px] text-tertiary">(0 saved)</span>
+                    </div>
+                    <button onclick="toggleWishlistDrawer(false)" aria-label="Close Wishlist" class="p-1 text-secondary hover:text-on-surface">
+                        <span class="material-symbols-outlined text-[24px]">close</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Wishlist Items -->
+            <div id="wishlist-items-container" class="flex-1 overflow-y-auto my-4 pr-1 flex flex-col gap-4">
+                <!-- Injected via JS -->
+            </div>
+
+            <div class="border-t border-outline-variant pt-4">
+                <button onclick="toggleWishlistDrawer(false); filterProducts('all');" class="w-full bg-surface text-on-surface font-label-caps text-label-caps uppercase py-3 border border-outline-variant hover:border-on-surface transition-all duration-300">
+                    Continue Browsing
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ====================================================== -->
+    <!-- INTERACTIVE PRODUCT QUICK VIEW MODAL                   -->
+    <!-- ====================================================== -->
+    <div id="quick-view-backdrop" class="fixed inset-0 bg-on-surface/50 z-50 drawer-backdrop flex items-center justify-center p-4 sm:p-6" aria-hidden="true">
+        <div id="quick-view-panel" role="dialog" aria-modal="true" aria-labelledby="qv-title" class="bg-surface w-full max-w-3xl border border-outline-variant shadow-2xl modal-panel max-h-[90vh] overflow-y-auto relative">
+            <button onclick="closeQuickView()" aria-label="Close quick view" class="absolute top-4 right-4 z-20 p-2 bg-surface/80 backdrop-blur-sm text-secondary hover:text-on-surface">
+                <span class="material-symbols-outlined text-[24px]">close</span>
+            </button>
+            <div id="quick-view-content" class="p-6 sm:p-8">
+                <!-- Injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================== -->
+    <!-- INTERACTIVE CHECKOUT MODAL                             -->
+    <!-- ====================================================== -->
+    <div id="checkout-modal-backdrop" class="fixed inset-0 bg-on-surface/60 z-50 drawer-backdrop flex items-center justify-center p-4 sm:p-6" aria-hidden="true">
+        <div id="checkout-modal-panel" role="dialog" aria-modal="true" class="bg-surface w-full max-w-2xl border border-outline-variant p-6 sm:p-10 shadow-2xl modal-panel max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center pb-4 border-b border-outline-variant mb-6">
+                <div>
+                    <span class="font-label-caps text-[10px] text-tertiary uppercase tracking-widest block">Instant Checkout</span>
+                    <h2 class="font-display-sm text-[24px] uppercase">Express Order Placement</h2>
+                </div>
+                <button onclick="closeCheckoutModal()" aria-label="Close checkout" class="p-1 text-secondary hover:text-on-surface">
+                    <span class="material-symbols-outlined text-[24px]">close</span>
+                </button>
+            </div>
+
+            <!-- Order Confirmation State (Hidden initially) -->
+            <div id="order-success-view" class="hidden text-center py-8">
+                <div class="w-16 h-16 rounded-full bg-surface-container mx-auto flex items-center justify-center mb-4 text-accent-sage border border-accent-sage">
+                    <span class="material-symbols-outlined text-[32px]">check</span>
+                </div>
+                <h3 class="font-display-sm text-[28px] uppercase mb-2">Order Confirmed</h3>
+                <p class="font-body-md text-secondary mb-1">Thank you for choosing Balento.</p>
+                <p class="font-label-caps text-[13px] text-on-surface font-semibold mb-6">Order Reference: <span id="confirmed-order-id">BAL-2026-9281</span></p>
+                <p class="font-body-md text-sm text-secondary max-w-md mx-auto mb-8 font-light">
+                    A confirmation SMS &amp; email have been dispatched. Your handcrafted bag will be prepared and shipped within 24 hours with complimentary insured express delivery.
+                </p>
+                <button onclick="closeCheckoutModal(); toggleCart(false);" class="bg-on-surface text-surface font-label-caps text-[12px] uppercase px-8 py-3.5 border border-on-surface hover:bg-surface hover:text-on-surface transition-all">
+                    Return to Store
+                </button>
+            </div>
+
+            <!-- Checkout Form State -->
+            <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label class="font-label-caps text-[11px] uppercase tracking-wider block mb-1">Full Name *</label>
+                        <input required type="text" placeholder="e.g. Priya Mehta" class="w-full bg-surface-container-lowest border border-outline-variant p-3 text-body-md focus:border-on-surface focus:outline-none"/>
+                    </div>
+                    <div>
+                        <label class="font-label-caps text-[11px] uppercase tracking-wider block mb-1">Phone Number (For Delivery SMS) *</label>
+                        <input required type="tel" placeholder="+91 98765 43210" class="w-full bg-surface-container-lowest border border-outline-variant p-3 text-body-md focus:border-on-surface focus:outline-none"/>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="font-label-caps text-[11px] uppercase tracking-wider block mb-1">Delivery Address *</label>
+                        <input required type="text" placeholder="Flat, Building, Street, Area" class="w-full bg-surface-container-lowest border border-outline-variant p-3 text-body-md focus:border-on-surface focus:outline-none"/>
+                    </div>
+                    <div>
+                        <label class="font-label-caps text-[11px] uppercase tracking-wider block mb-1">City *</label>
+                        <input required type="text" placeholder="e.g. Bengaluru" class="w-full bg-surface-container-lowest border border-outline-variant p-3 text-body-md focus:border-on-surface focus:outline-none"/>
+                    </div>
+                    <div>
+                        <label class="font-label-caps text-[11px] uppercase tracking-wider block mb-1">PIN Code *</label>
+                        <input required type="text" placeholder="e.g. 560034" class="w-full bg-surface-container-lowest border border-outline-variant p-3 text-body-md focus:border-on-surface focus:outline-none"/>
+                    </div>
+                </div>
+
+                <!-- Promo Code -->
+                <div class="mb-6 pb-6 border-b border-outline-variant">
+                    <label class="font-label-caps text-[11px] uppercase tracking-wider block mb-1">Promotional Privilege Code</label>
+                    <div class="flex gap-2">
+                        <input id="checkout-promo-input" type="text" placeholder="Try WELCOME10" class="flex-1 uppercase bg-surface-container-lowest border border-outline-variant p-2.5 text-body-md focus:border-on-surface focus:outline-none text-sm"/>
+                        <button type="button" onclick="applyPromoCode()" class="bg-surface-container border border-outline-variant px-4 py-2 font-label-caps text-[11px] uppercase hover:border-on-surface">Apply</button>
+                    </div>
+                    <p id="promo-feedback" class="text-accent-sage font-label-caps text-[11px] uppercase tracking-wider mt-1.5 hidden">✓ 10% Discount Applied!</p>
+                </div>
+
+                <!-- Payment Options -->
+                <div class="mb-6">
+                    <label class="font-label-caps text-[11px] uppercase tracking-wider block mb-2 font-semibold">Payment Option</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <label class="border border-on-surface p-3 flex items-center gap-2 cursor-pointer bg-surface-container-low">
+                            <input type="radio" name="payment" value="upi" checked class="text-on-surface focus:ring-0"/>
+                            <span class="font-label-caps text-[11px] uppercase">UPI / QR</span>
+                        </label>
+                        <label class="border border-outline-variant p-3 flex items-center gap-2 cursor-pointer hover:border-on-surface">
+                            <input type="radio" name="payment" value="card" class="text-on-surface focus:ring-0"/>
+                            <span class="font-label-caps text-[11px] uppercase">Card / NetBanking</span>
+                        </label>
+                        <label class="border border-outline-variant p-3 flex items-center gap-2 cursor-pointer hover:border-on-surface">
+                            <input type="radio" name="payment" value="cod" class="text-on-surface focus:ring-0"/>
+                            <span class="font-label-caps text-[11px] uppercase">Cash on Delivery</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Total Row & Submit -->
+                <div class="flex justify-between items-center mb-6 pt-4 border-t border-outline-variant">
+                    <div>
+                        <span class="font-label-caps text-[11px] text-secondary uppercase block">Total Payable (All Taxes Incl.)</span>
+                        <span id="checkout-final-total" class="font-display-sm text-[26px] text-on-surface font-bold">₹0</span>
+                    </div>
+                    <button type="submit" class="bg-on-surface text-surface font-label-caps text-label-caps uppercase px-8 py-4 border border-on-surface hover:bg-surface hover:text-on-surface transition-all font-medium">
+                        Confirm &amp; Place Order
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ====================================================== -->
+    <!-- INTERACTIVE INFORMATION / FAQ MODAL                    -->
+    <!-- ====================================================== -->
+    <div id="info-modal-backdrop" class="fixed inset-0 bg-on-surface/50 z-50 drawer-backdrop flex items-center justify-center p-4 sm:p-6" aria-hidden="true">
+        <div id="info-modal-panel" role="dialog" aria-modal="true" class="bg-surface w-full max-w-2xl border border-outline-variant p-6 sm:p-10 shadow-2xl modal-panel max-h-[85vh] overflow-y-auto">
+            <div class="flex justify-between items-center pb-4 border-b border-outline-variant mb-6">
+                <h3 id="info-modal-title" class="font-display-sm text-[24px] uppercase">Information</h3>
+                <button onclick="toggleInfoModal(false)" aria-label="Close dialog" class="p-1 text-secondary hover:text-on-surface">
+                    <span class="material-symbols-outlined text-[24px]">close</span>
+                </button>
+            </div>
+            <div id="info-modal-body" class="font-body-md text-secondary leading-relaxed space-y-4 font-light text-sm sm:text-base">
+                <!-- Injected dynamically -->
+            </div>
+        </div>
     </div>
 
     <!-- ====================================================== -->
@@ -928,12 +1331,20 @@
     </div>
 
     <!-- ====================================================== -->
+    <!-- GLOBAL LUXURY TOAST NOTIFICATION                       -->
+    <!-- ====================================================== -->
+    <div id="toast-notification" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-on-surface text-surface px-6 py-3 border border-outline-variant shadow-xl flex items-center gap-3">
+        <span id="toast-icon" class="material-symbols-outlined text-[20px] text-surface">check_circle</span>
+        <span id="toast-message" class="font-label-caps text-[11px] uppercase tracking-wider font-medium">Notification message</span>
+    </div>
+
+    <!-- ====================================================== -->
     <!-- CLIENT APPLICATION JAVASCRIPT                          -->
     <!-- ====================================================== -->
     <script>
         /**
          * BALENTO Product Catalog Data Model
-         * 5 Core Products with Verified Details
+         * 5 Core Products with Verified Details & Rich Specifications
          */
         const PRODUCTS = [
             {
@@ -941,7 +1352,9 @@
                 name: "Verona Tote",
                 category: "tote",
                 price: 2499,
-                description: "Spacious architectural tote with a padded 14-inch laptop compartment and reinforced leather straps.",
+                description: "Spacious architectural tote with a padded 14-inch laptop compartment, key leash, and reinforced leather shoulder drop.",
+                dimensions: "38cm (W) × 30cm (H) × 14cm (D)",
+                weight: "680 grams",
                 images: {
                     primary: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=900&q=80",
                     hover: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=80"
@@ -951,6 +1364,7 @@
                     { name: "Cognac", hex: "#8B5A2B" },
                     { name: "Coffee Brown", hex: "#4A3B32" }
                 ],
+                features: ["14\" Laptop Sleeve", "Magnetic Closure", "Water-resistant Lining", "Key Leash"],
                 tag: "Best Seller"
             },
             {
@@ -958,7 +1372,9 @@
                 name: "Elara Shoulder",
                 category: "shoulder",
                 price: 2299,
-                description: "Sculptural crescent shoulder bag with a fluid silhouette and smooth magnetic closure.",
+                description: "Sculptural crescent shoulder bag with a fluid silhouette, buttery soft hand feel, and smooth magnetic closure.",
+                dimensions: "28cm (W) × 18cm (H) × 8cm (D)",
+                weight: "420 grams",
                 images: {
                     primary: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=900&q=80",
                     hover: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=900&q=80"
@@ -968,6 +1384,7 @@
                     { name: "Cognac", hex: "#8B5A2B" },
                     { name: "Coffee Brown", hex: "#4A3B32" }
                 ],
+                features: ["Ergonomic Shoulder Strap", "Interior Card Organizer", "Custom Brass Trim"],
                 tag: "Trending"
             },
             {
@@ -975,7 +1392,9 @@
                 name: "Cora Crossbody",
                 category: "crossbody",
                 price: 2099,
-                description: "Clean, hands-free daily essential with an adjustable strap and dual internal card organizers.",
+                description: "Clean, hands-free daily essential with an adjustable strap, dual internal card organizers, and quick-access back slip pocket.",
+                dimensions: "22cm (W) × 16cm (H) × 6cm (D)",
+                weight: "360 grams",
                 images: {
                     primary: "https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?auto=format&fit=crop&w=900&q=80",
                     hover: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80"
@@ -985,6 +1404,7 @@
                     { name: "Cognac", hex: "#8B5A2B" },
                     { name: "Coffee Brown", hex: "#4A3B32" }
                 ],
+                features: ["Adjustable Crossbody Strap", "Secure Zipper Pocket", "Scratch-resistant Grain"],
                 tag: "Essential"
             },
             {
@@ -992,7 +1412,9 @@
                 name: "Alba Hobo",
                 category: "hobo",
                 price: 2399,
-                description: "Relaxed slouch silhouette crafted from ultra-supple nappa leather with an ergonomic shoulder drop.",
+                description: "Relaxed slouch silhouette crafted from ultra-supple nappa leather with generous internal capacity and comfortable carry.",
+                dimensions: "34cm (W) × 26cm (H) × 12cm (D)",
+                weight: "510 grams",
                 images: {
                     primary: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=80",
                     hover: "https://images.unsplash.com/photo-1575032617751-6ddec2089882?auto=format&fit=crop&w=900&q=80"
@@ -1002,6 +1424,7 @@
                     { name: "Cognac", hex: "#8B5A2B" },
                     { name: "Coffee Brown", hex: "#4A3B32" }
                 ],
+                features: ["Ultra-soft Supple Leather", "Wide Slouch Profile", "Dual Magnetic Clasp"],
                 tag: "Editor's Pick"
             },
             {
@@ -1009,7 +1432,9 @@
                 name: "Mira Structured",
                 category: "structured",
                 price: 2499,
-                description: "Architectural top-handle bag with a detachable crossbody strap and gold-tone protective base feet.",
+                description: "Architectural top-handle bag with a detachable crossbody strap, structured accordion gussets, and gold-tone protective base feet.",
+                dimensions: "26cm (W) × 20cm (H) × 10cm (D)",
+                weight: "580 grams",
                 images: {
                     primary: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=900&q=80",
                     hover: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80"
@@ -1019,20 +1444,24 @@
                     { name: "Cognac", hex: "#8B5A2B" },
                     { name: "Coffee Brown", hex: "#4A3B32" }
                 ],
+                features: ["Dual Structured Top Handles", "Detachable Long Strap", "Protective Metal Feet"],
                 tag: "New"
             }
         ];
 
-        // State
+        // State Management
         let cart = [];
         let wishlist = new Set();
-        let selectedProductColors = {}; // productId -> colorName
+        let selectedProductColors = {};
         let currentFilter = 'all';
+        let discountMultiplier = 1; // 1 = full price, 0.9 = 10% off
+        let monogramFoil = 'gold';
 
         // Initialization
         document.addEventListener('DOMContentLoaded', () => {
             initScrollObserver();
             initHeaderScroll();
+            initStickyBarScroll();
             loadState();
             renderProductGrid();
             initDrawersAndModals();
@@ -1073,6 +1502,21 @@
             }, { passive: true });
         }
 
+        function initStickyBarScroll() {
+            const stickyBar = document.getElementById('sticky-product-bar');
+            const hero = document.querySelector('main section:first-of-type');
+            if (!stickyBar) return;
+
+            window.addEventListener('scroll', () => {
+                const heroHeight = hero ? hero.offsetHeight : 600;
+                if (window.scrollY > heroHeight + 300) {
+                    stickyBar.classList.add('visible');
+                } else {
+                    stickyBar.classList.remove('visible');
+                }
+            }, { passive: true });
+        }
+
         /* -------------------------------------------------------------
            State & LocalStorage
            ------------------------------------------------------------- */
@@ -1105,6 +1549,74 @@
         }
 
         /* -------------------------------------------------------------
+           Toast Notification System
+           ------------------------------------------------------------- */
+        let toastTimeout;
+        function showToast(message, icon = 'check_circle') {
+            const toast = document.getElementById('toast-notification');
+            const msgEl = document.getElementById('toast-message');
+            const iconEl = document.getElementById('toast-icon');
+            if (!toast || !msgEl) return;
+
+            msgEl.textContent = message;
+            if (iconEl) iconEl.textContent = icon;
+
+            toast.classList.add('active');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3500);
+        }
+
+        /* -------------------------------------------------------------
+           Monogram Customizer Atelier
+           ------------------------------------------------------------- */
+        function updateMonogramPreview() {
+            const input = document.getElementById('monogram-input');
+            const render = document.getElementById('monogram-render');
+            if (!input || !render) return;
+
+            const text = input.value.trim().toUpperCase() || 'BM';
+            render.textContent = text.split('').join('.');
+        }
+
+        function setMonogramFoil(type) {
+            monogramFoil = type;
+            const render = document.getElementById('monogram-render');
+            if (!render) return;
+
+            render.className = `font-display-lg text-[44px] uppercase my-auto tracking-widest monogram-preview-${type}`;
+
+            document.querySelectorAll('.monogram-foil-btn').forEach(btn => {
+                if (btn.textContent.toLowerCase().includes(type)) {
+                    btn.classList.add('active', 'bg-on-surface', 'text-surface', 'border-on-surface');
+                    btn.classList.remove('text-secondary', 'border-outline-variant');
+                } else {
+                    btn.classList.remove('active', 'bg-on-surface', 'text-surface', 'border-on-surface');
+                    btn.classList.add('text-secondary', 'border-outline-variant');
+                }
+            });
+        }
+
+        function addMonogrammedTagToCart() {
+            const input = document.getElementById('monogram-input');
+            const initials = input ? (input.value.trim().toUpperCase() || 'BM') : 'BM';
+
+            cart.push({
+                id: "monogram-tag",
+                name: `Bespoke Monogrammed Tag (${initials})`,
+                price: 0,
+                color: `${monogramFoil.toUpperCase()} FOIL`,
+                image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=300&q=80",
+                quantity: 1
+            });
+
+            saveCartState();
+            showToast(`✓ Added Bespoke Tag (${initials}) to Bag`);
+            toggleCart(true);
+        }
+
+        /* -------------------------------------------------------------
            Product Grid Rendering & Filtering
            ------------------------------------------------------------- */
         function renderProductGrid() {
@@ -1122,7 +1634,7 @@
                 return `
                     <div class="group cursor-pointer flex flex-col" data-product-id="${product.id}">
                         <!-- Image Container with Aspect Ratio (Prevents CLS) -->
-                        <div class="aspect-[4/5] bg-surface-container overflow-hidden relative mb-4 image-hover-wrapper border border-outline-variant/50">
+                        <div class="aspect-[4/5] bg-surface-container overflow-hidden relative mb-4 image-hover-wrapper border border-outline-variant/50" onclick="openQuickView('${product.id}')">
                             <img 
                                 src="${product.images.primary}" 
                                 alt="${product.name} in premium leather" 
@@ -1166,7 +1678,7 @@
 
                         <!-- Product Information -->
                         <div class="text-center flex flex-col items-center">
-                            <h3 class="font-label-caps text-[13px] uppercase tracking-wider mb-1 text-on-surface">${product.name}</h3>
+                            <h3 onclick="openQuickView('${product.id}')" class="font-label-caps text-[13px] uppercase tracking-wider mb-1 text-on-surface hover:underline cursor-pointer">${product.name}</h3>
                             <p class="font-headline-sm text-[18px] text-secondary mb-2.5">₹${product.price.toLocaleString('en-IN')}</p>
                             
                             <!-- Color Swatches -->
@@ -1217,6 +1729,93 @@
         }
 
         /* -------------------------------------------------------------
+           Quick View Lightbox Modal
+           ------------------------------------------------------------- */
+        function openQuickView(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            const selectedColor = selectedProductColors[productId] || product.colors[0].name;
+            const isWishlisted = wishlist.has(product.id);
+            const content = document.getElementById('quick-view-content');
+
+            content.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <!-- Image Showcase with Thumbnail toggle -->
+                    <div class="flex flex-col gap-3">
+                        <div class="aspect-[4/5] bg-surface-container overflow-hidden border border-outline-variant">
+                            <img id="qv-main-img" src="${product.images.primary}" alt="${product.name}" class="w-full h-full object-cover" />
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="document.getElementById('qv-main-img').src='${product.images.primary}'" class="w-16 h-20 border border-on-surface overflow-hidden">
+                                <img src="${product.images.primary}" alt="${product.name} Front" class="w-full h-full object-cover"/>
+                            </button>
+                            <button onclick="document.getElementById('qv-main-img').src='${product.images.hover}'" class="w-16 h-20 border border-outline-variant overflow-hidden hover:border-on-surface">
+                                <img src="${product.images.hover}" alt="${product.name} Detail" class="w-full h-full object-cover"/>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Details & Purchase Actions -->
+                    <div class="flex flex-col text-left">
+                        <span class="font-label-caps text-[10px] text-tertiary uppercase tracking-widest mb-1">${product.category} • ${product.tag}</span>
+                        <h3 id="qv-title" class="font-display-sm text-[28px] uppercase mb-2 leading-tight">${product.name}</h3>
+                        <p class="font-headline-sm text-[22px] text-on-surface mb-4 font-semibold">₹${product.price.toLocaleString('en-IN')}</p>
+                        
+                        <p class="font-body-md text-secondary text-sm mb-6 leading-relaxed font-light">${product.description}</p>
+                        
+                        <!-- Color Options -->
+                        <div class="mb-6">
+                            <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary block mb-2">Selected Color: <strong class="text-on-surface" id="qv-selected-color">${selectedColor}</strong></span>
+                            <div class="flex gap-2">
+                                ${product.colors.map(col => `
+                                    <button 
+                                        onclick="changeProductColor('${product.id}', '${col.name}'); document.getElementById('qv-selected-color').textContent='${col.name}';"
+                                        class="w-6 h-6 rounded-full border ${selectedColor === col.name ? 'ring-2 ring-on-surface ring-offset-2 border-transparent' : 'border-outline-variant'}"
+                                        style="background-color: ${col.hex};"
+                                        title="${col.name}"
+                                    ></button>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Specifications List -->
+                        <div class="bg-surface-container-low p-4 border border-outline-variant/60 mb-6 text-xs space-y-1.5 font-body-md text-secondary">
+                            <p><strong>Dimensions:</strong> ${product.dimensions}</p>
+                            <p><strong>Weight:</strong> ${product.weight}</p>
+                            <p><strong>Highlights:</strong> ${product.features.join(' • ')}</p>
+                            <p class="text-accent-sage font-medium">✓ In Stock • Express Dispatch in 24 Hours</p>
+                        </div>
+
+                        <!-- CTA buttons -->
+                        <div class="flex gap-3">
+                            <button onclick="quickAddById('${product.id}'); closeQuickView();" class="flex-1 bg-on-surface text-surface font-label-caps text-label-caps uppercase py-3.5 border border-on-surface hover:bg-surface hover:text-on-surface transition-all text-center">
+                                Add to Bag • ₹${product.price.toLocaleString('en-IN')}
+                            </button>
+                            <button onclick="toggleWishlist('${product.id}'); closeQuickView();" aria-label="Wishlist" class="p-3.5 border border-outline-variant hover:border-on-surface text-secondary hover:text-on-surface">
+                                <span class="material-symbols-outlined text-[20px]">${isWishlisted ? 'favorite' : 'favorite_border'}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const backdrop = document.getElementById('quick-view-backdrop');
+            const panel = document.getElementById('quick-view-panel');
+            backdrop.classList.add('active');
+            panel.classList.add('active');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeQuickView() {
+            const backdrop = document.getElementById('quick-view-backdrop');
+            const panel = document.getElementById('quick-view-panel');
+            backdrop.classList.remove('active');
+            panel.classList.remove('active');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        /* -------------------------------------------------------------
            Cart Drawer Mechanics & Free Shipping Bar
            ------------------------------------------------------------- */
         function toggleCart(isOpen) {
@@ -1255,6 +1854,7 @@
             }
 
             saveCartState();
+            showToast(`✓ Added ${product.name} (${selectedColor}) to Bag`);
             toggleCart(true);
         }
 
@@ -1269,8 +1869,9 @@
 
         function removeCartItem(index) {
             if (!cart[index]) return;
-            cart.splice(index, 1);
+            const removed = cart.splice(index, 1)[0];
             saveCartState();
+            if (removed) showToast(`Removed ${removed.name} from Bag`, 'delete');
         }
 
         function updateCartUI() {
@@ -1322,7 +1923,7 @@
                         <span class="material-symbols-outlined text-[48px] text-tertiary font-light mb-3">shopping_bag</span>
                         <p class="font-headline-sm text-[20px] text-on-surface mb-2 uppercase">Your bag is empty</p>
                         <p class="font-body-md text-secondary text-sm mb-6">Discover timeless pieces designed for your everyday wardrobe.</p>
-                        <button onclick="toggleCart(false)" class="bg-on-surface text-surface font-label-caps text-[11px] uppercase px-6 py-3 border border-on-surface hover:bg-surface hover:text-on-surface transition-all">
+                        <button onclick="toggleCart(false); filterProducts('all');" class="bg-on-surface text-surface font-label-caps text-[11px] uppercase px-6 py-3 border border-on-surface hover:bg-surface hover:text-on-surface transition-all">
                             Explore Collection
                         </button>
                     </div>
@@ -1354,17 +1955,77 @@
         }
 
         /* -------------------------------------------------------------
-           Wishlist Mechanics
+           Wishlist Drawer & Toggle
            ------------------------------------------------------------- */
         function toggleWishlist(productId, event) {
             if (event) event.stopPropagation();
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
             if (wishlist.has(productId)) {
                 wishlist.delete(productId);
+                showToast(`Removed ${product.name} from Wishlist`, 'favorite_border');
             } else {
                 wishlist.add(productId);
+                showToast(`♥ Added ${product.name} to Wishlist`, 'favorite');
             }
             saveWishlistState();
             renderProductGrid();
+        }
+
+        function toggleWishlistDrawer(isOpen) {
+            const backdrop = document.getElementById('wishlist-backdrop');
+            const drawer = document.getElementById('wishlist-drawer');
+            if (isOpen) {
+                renderWishlistDrawerItems();
+                backdrop.classList.add('active');
+                drawer.classList.add('active');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                backdrop.classList.remove('active');
+                drawer.classList.remove('active');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        function renderWishlistDrawerItems() {
+            const container = document.getElementById('wishlist-items-container');
+            const headerCount = document.getElementById('wishlist-header-count');
+            if (!container) return;
+
+            const savedItems = PRODUCTS.filter(p => wishlist.has(p.id));
+            if (headerCount) headerCount.textContent = `(${savedItems.length} ${savedItems.length === 1 ? 'item' : 'items'})`;
+
+            if (savedItems.length === 0) {
+                container.innerHTML = `
+                    <div class="flex-1 flex flex-col items-center justify-center text-center p-6 my-auto">
+                        <span class="material-symbols-outlined text-[48px] text-tertiary font-light mb-3">favorite_border</span>
+                        <p class="font-headline-sm text-[20px] text-on-surface mb-2 uppercase">No items in Wishlist</p>
+                        <p class="font-body-md text-secondary text-sm mb-6">Save your favorite silhouettes to review anytime.</p>
+                        <button onclick="toggleWishlistDrawer(false); filterProducts('all');" class="bg-on-surface text-surface font-label-caps text-[11px] uppercase px-6 py-3 border border-on-surface hover:bg-surface hover:text-on-surface transition-all">
+                            Browse Collection
+                        </button>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = savedItems.map(p => `
+                    <div class="flex gap-4 pb-4 border-b border-outline-variant/60 items-center">
+                        <img src="${p.images.primary}" alt="${p.name}" class="w-20 h-24 object-cover border border-outline-variant flex-shrink-0 bg-surface-container" />
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-label-caps text-[13px] uppercase text-on-surface truncate">${p.name}</h4>
+                                <button onclick="toggleWishlist('${p.id}'); renderWishlistDrawerItems();" aria-label="Remove item" class="text-secondary hover:text-on-surface p-1">
+                                    <span class="material-symbols-outlined text-[18px]">close</span>
+                                </button>
+                            </div>
+                            <p class="font-body-md text-[13px] text-secondary mb-3">₹${p.price.toLocaleString('en-IN')}</p>
+                            <button onclick="toggleWishlistDrawer(false); quickAddById('${p.id}');" class="w-full bg-on-surface text-surface font-label-caps text-[10px] uppercase py-2 hover:bg-surface hover:text-on-surface border border-on-surface transition-all">
+                                Move to Bag
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
         }
 
         function updateWishlistUI() {
@@ -1379,6 +2040,188 @@
             } else {
                 if (badge) badge.classList.add('opacity-0');
                 if (icon) icon.style.fontVariationSettings = "'FILL' 0";
+            }
+        }
+
+        /* -------------------------------------------------------------
+           Checkout Simulation Modal
+           ------------------------------------------------------------- */
+        function openCheckoutModal() {
+            if (cart.length === 0) {
+                showToast("Your shopping bag is currently empty.");
+                return;
+            }
+            toggleCart(false);
+            const backdrop = document.getElementById('checkout-modal-backdrop');
+            const panel = document.getElementById('checkout-modal-panel');
+            const successView = document.getElementById('order-success-view');
+            const form = document.getElementById('checkout-form');
+
+            if (successView) successView.classList.add('hidden');
+            if (form) form.classList.remove('hidden');
+
+            updateCheckoutTotal();
+            backdrop.classList.add('active');
+            panel.classList.add('active');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeCheckoutModal() {
+            const backdrop = document.getElementById('checkout-modal-backdrop');
+            const panel = document.getElementById('checkout-modal-panel');
+            backdrop.classList.remove('active');
+            panel.classList.remove('active');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        function updateCheckoutTotal() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const total = Math.round(subtotal * discountMultiplier);
+            const totalEl = document.getElementById('checkout-final-total');
+            if (totalEl) totalEl.textContent = `₹${total.toLocaleString('en-IN')}`;
+        }
+
+        function applyPromoCode() {
+            const input = document.getElementById('checkout-promo-input');
+            const feedback = document.getElementById('promo-feedback');
+            const val = input.value.trim().toUpperCase();
+
+            if (val === 'WELCOME10' || val === 'BALENTO') {
+                discountMultiplier = 0.9;
+                feedback.classList.remove('hidden');
+                feedback.textContent = '✓ 10% Promotional Privilege Applied!';
+                updateCheckoutTotal();
+                showToast("✓ 10% Discount Applied Successfully");
+            } else {
+                showToast("Invalid code. Try 'WELCOME10'", 'error');
+            }
+        }
+
+        function handleCheckoutSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('checkout-form');
+            const successView = document.getElementById('order-success-view');
+            const orderIdEl = document.getElementById('confirmed-order-id');
+
+            const randomId = 'BAL-2026-' + Math.floor(1000 + Math.random() * 9000);
+            if (orderIdEl) orderIdEl.textContent = randomId;
+
+            // Clear cart
+            cart = [];
+            saveCartState();
+
+            if (form) form.classList.add('hidden');
+            if (successView) successView.classList.remove('hidden');
+        }
+
+        /* -------------------------------------------------------------
+           Information / Customer Care Modals
+           ------------------------------------------------------------- */
+        const INFO_CONTENT = {
+            care: {
+                title: "Materials & Care Guide",
+                html: `
+                    <p>Every BALENTO bag is crafted from hand-selected full-grain and fine nappa leathers that develop a distinct, rich patina over time.</p>
+                    <h4 class="font-headline-sm text-on-surface uppercase text-[16px] mt-4 mb-1">Care Recommendations:</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Store your bag in the provided breathable cotton dust bag when not in use.</li>
+                        <li>Avoid prolonged exposure to intense direct sunlight or moisture.</li>
+                        <li>If exposed to rain, gently pat dry with a soft microfiber cloth and let air dry naturally.</li>
+                        <li>Apply a neutral leather conditioner once every six months to nourish the grain.</li>
+                    </ul>
+                `
+            },
+            shipping: {
+                title: "Shipping & Return Policy",
+                html: `
+                    <p>We provide <strong>Complimentary Express Delivery</strong> across India on all orders above ₹2,000.</p>
+                    <ul class="list-disc pl-5 space-y-2 mt-3">
+                        <li><strong>Metro Cities (Mumbai, Delhi NCR, Bengaluru):</strong> Delivered in 2–3 business days.</li>
+                        <li><strong>Rest of India:</strong> Delivered in 4–5 business days.</li>
+                        <li><strong>Complimentary 7-Day Returns:</strong> If you are not completely delighted with your purchase, we arrange doorstep pickup and 100% full refund with zero questions asked.</li>
+                    </ul>
+                `
+            },
+            track: {
+                title: "Track Your Shipment",
+                html: `
+                    <p>Enter your 10-digit phone number or BALENTO order reference to track live delivery status.</p>
+                    <div class="flex gap-2 my-4">
+                        <input type="text" placeholder="e.g. BAL-2026-8921" class="flex-1 bg-surface-container-lowest border border-outline-variant p-3 text-body-md focus:border-on-surface focus:outline-none"/>
+                        <button onclick="showToast('Shipment status: Out for Delivery with Bluedart Air')" class="bg-on-surface text-surface font-label-caps text-[11px] uppercase px-4">Track</button>
+                    </div>
+                `
+            },
+            faq: {
+                title: "Frequently Asked Questions",
+                html: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-label-caps text-[13px] text-on-surface uppercase font-semibold">Do your totes fit a 14-inch laptop?</h4>
+                            <p class="mt-1">Yes, the Verona Tote is engineered with a dedicated padded sleeve that snugly accommodates up to a 14" MacBook Pro or equivalent laptop.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-label-caps text-[13px] text-on-surface uppercase font-semibold">Is the leather 100% genuine?</h4>
+                            <p class="mt-1">Yes, all BALENTO bags are created from 100% ethically sourced genuine leather with custom brushed brass hardware.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-label-caps text-[13px] text-on-surface uppercase font-semibold">What payment modes do you support?</h4>
+                            <p class="mt-1">We support all UPI applications (GPay, PhonePe, Paytm), Credit & Debit Cards, NetBanking, and Cash on Delivery.</p>
+                        </div>
+                    </div>
+                `
+            },
+            sustainability: {
+                title: "Our Sustainability Commitment",
+                html: `
+                    <p>At BALENTO, sustainability is rooted in timeless durability. By creating enduring bags that last years rather than seasons, we counter fast fashion waste.</p>
+                    <p class="mt-2">Our leather tanneries adhere strictly to LWG (Leather Working Group) certified ethical standards, utilizing non-toxic dyes and zero single-use plastics in our packaging.</p>
+                `
+            },
+            careers: {
+                title: "Join The Balento Team",
+                html: `
+                    <p>We are always looking for passionate designers, digital storytellers, and logistics innovators based in Bengaluru and Mumbai.</p>
+                    <p class="mt-2">Send your portfolio and resume to <strong class="text-on-surface">careers@balento.com</strong>.</p>
+                `
+            },
+            privacy: {
+                title: "Privacy Policy",
+                html: `
+                    <p>BALENTO respects your personal privacy. We never sell or distribute your data to third-party brokers. Personal information collected during checkout is encrypted and used exclusively for shipment fulfillment and transactional communication.</p>
+                `
+            },
+            terms: {
+                title: "Terms of Service",
+                html: `
+                    <p>By using this website, you agree to our standard terms of service. All editorial photography, branding, and bag silhouettes are proprietary to BALENTO India Pvt Ltd.</p>
+                `
+            },
+            contact: {
+                title: "Contact Concierge",
+                html: `
+                    <p>Our dedicated client care team is available Monday to Saturday, 9:00 AM – 7:00 PM IST.</p>
+                    <p class="mt-2"><strong>Email:</strong> care@balento.com<br/><strong>WhatsApp / Phone:</strong> +91 (080) 4129-8400<br/><strong>Studio:</strong> Koramangala 4th Block, Bengaluru, KA 560034</p>
+                `
+            }
+        };
+
+        function toggleInfoModal(isOpen, topicKey = 'faq') {
+            const backdrop = document.getElementById('info-modal-backdrop');
+            const panel = document.getElementById('info-modal-panel');
+            const titleEl = document.getElementById('info-modal-title');
+            const bodyEl = document.getElementById('info-modal-body');
+
+            if (isOpen && INFO_CONTENT[topicKey]) {
+                titleEl.textContent = INFO_CONTENT[topicKey].title;
+                bodyEl.innerHTML = INFO_CONTENT[topicKey].html;
+                backdrop.classList.add('active');
+                panel.classList.add('active');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                backdrop.classList.remove('active');
+                panel.classList.remove('active');
+                document.body.classList.remove('overflow-hidden');
             }
         }
 
@@ -1423,7 +2266,7 @@
             } else {
                 resultsContainer.innerHTML = matches.map(p => `
                     <div class="flex items-center justify-between p-2.5 hover:bg-surface-container transition-colors border border-outline-variant/40">
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-3 cursor-pointer" onclick="toggleSearch(false); openQuickView('${p.id}');">
                             <img src="${p.images.primary}" alt="${p.name}" class="w-12 h-14 object-cover border border-outline-variant" />
                             <div>
                                 <h4 class="font-label-caps text-[12px] uppercase text-on-surface">${p.name}</h4>
@@ -1522,6 +2365,7 @@
             const feedback = document.getElementById('newsletter-feedback');
             if (input && input.value) {
                 feedback.classList.remove('hidden');
+                showToast("✓ Welcome to the Balento Inner Circle");
                 input.value = '';
                 setTimeout(() => feedback.classList.add('hidden'), 5000);
             }
@@ -1536,6 +2380,26 @@
             document.getElementById('cart-close-btn')?.addEventListener('click', () => toggleCart(false));
             document.getElementById('cart-backdrop')?.addEventListener('click', (e) => {
                 if (e.target.id === 'cart-backdrop') toggleCart(false);
+            });
+
+            // Wishlist events
+            document.getElementById('wishlist-backdrop')?.addEventListener('click', (e) => {
+                if (e.target.id === 'wishlist-backdrop') toggleWishlistDrawer(false);
+            });
+
+            // Quick View backdrop click
+            document.getElementById('quick-view-backdrop')?.addEventListener('click', (e) => {
+                if (e.target.id === 'quick-view-backdrop') closeQuickView();
+            });
+
+            // Checkout backdrop click
+            document.getElementById('checkout-modal-backdrop')?.addEventListener('click', (e) => {
+                if (e.target.id === 'checkout-modal-backdrop') closeCheckoutModal();
+            });
+
+            // Info modal backdrop click
+            document.getElementById('info-modal-backdrop')?.addEventListener('click', (e) => {
+                if (e.target.id === 'info-modal-backdrop') toggleInfoModal(false);
             });
 
             // Search events
@@ -1553,10 +2417,14 @@
                 if (e.target.id === 'mobile-nav-backdrop') toggleMobileMenu(false);
             });
 
-            // Keyboard shortcut (Escape & Cmd+K)
+            // Keyboard shortcuts (Escape & Cmd+K)
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     toggleCart(false);
+                    toggleWishlistDrawer(false);
+                    closeQuickView();
+                    closeCheckoutModal();
+                    toggleInfoModal(false);
                     toggleSearch(false);
                     toggleMobileMenu(false);
                 }
