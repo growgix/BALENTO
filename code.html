@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>BALENTO | Accessible Premium Everyday Leather Bags</title>
+    <meta name="description" content="BALENTO crafts accessible premium leather bags designed for the modern Indian professional. Minimalist silhouettes, thoughtful utility, and everyday elegance."/>
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="BALENTO | Accessible Premium Everyday Bags"/>
+    <meta property="og:description" content="Thoughtfully designed leather bags that bring together timeless style, everyday function, and accessible premium quality."/>
+    <meta property="og:type" content="website"/>
+    
+    <!-- Resource Prioritization: Preconnect & Preload LCP Hero -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="preconnect" href="https://images.unsplash.com"/>
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=2000&q=85" fetchpriority="high"/>
+
+    <!-- Typography: Bodoni Moda (Editorial Serif) & DM Sans (Clean Geometric Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+    <!-- Tailwind CSS with Official Plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#fdf8f7",
+                        "surface-dim": "#ddd9d8",
+                        "surface-bright": "#fdf8f7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f7f3f1",
+                        "surface-container": "#f1edec",
+                        "surface-container-high": "#ebe7e6",
+                        "surface-container-highest": "#e5e2e0",
+                        "on-surface": "#1c1b1b",
+                        "on-surface-variant": "#474741",
+                        "inverse-surface": "#313030",
+                        "inverse-on-surface": "#f4f0ef",
+                        "outline": "#787770",
+                        "outline-variant": "#c8c7be",
+                        "surface-tint": "#5f5e5b",
+                        "primary": "#5f5e5b",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#f5f2ed",
+                        "on-primary-container": "#6f6e6a",
+                        "inverse-primary": "#c9c6c2",
+                        "secondary": "#605e5c",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#e5e2df",
+                        "on-secondary-container": "#666462",
+                        "tertiary": "#695c52",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#fff0e6",
+                        "on-tertiary-container": "#7a6c61",
+                        "accent-leather-black": "#1c1b1b",
+                        "accent-leather-cognac": "#8B5A2B",
+                        "accent-leather-coffee": "#4A3B32",
+                        "accent-sage": "#657e62"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "none": "0px",
+                        "sm": "0px",
+                        "md": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "unit": "4px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xl": "48px",
+                        "xxl": "80px"
+                    },
+                    fontFamily: {
+                        "display-lg": ["'Bodoni Moda'", "serif"],
+                        "display-sm": ["'Bodoni Moda'", "serif"],
+                        "headline-lg": ["'Bodoni Moda'", "serif"],
+                        "headline-sm": ["'Bodoni Moda'", "serif"],
+                        "body-lg": ["'DM Sans'", "sans-serif"],
+                        "body-md": ["'DM Sans'", "sans-serif"],
+                        "label-caps": ["'DM Sans'", "sans-serif"],
+                        "nav-link": ["'DM Sans'", "sans-serif"]
+                    },
+                    fontSize: {
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "display-sm": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "nav-link": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.15em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        /* Smooth, 60fps Compositor-Only Animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Image hover crossfade */
+        .image-hover-wrapper .primary-image,
+        .image-hover-wrapper .hover-image {
+            transition: opacity 0.5s ease, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .image-hover-wrapper:hover .hover-image {
+            opacity: 1;
+        }
+        .image-hover-wrapper:hover .primary-image {
+            opacity: 0;
+        }
+        .image-hover-wrapper:hover img {
+            transform: scale(1.025);
+        }
+
+        /* Mega Menu Transition */
+        .mega-menu-wrapper:hover .mega-menu,
+        .mega-menu-wrapper:focus-within .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .mega-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
+            pointer-events: none;
+        }
+
+        /* Modal & Drawer backdrop and panels */
+        .drawer-backdrop {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .drawer-backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .drawer-panel {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .drawer-panel.active {
+            transform: translateX(0);
+        }
+
+        .modal-panel {
+            opacity: 0;
+            transform: scale(0.98) translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-panel.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .mobile-curtain {
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-curtain.active {
+            transform: translateX(0);
+        }
+
+        /* Micro-animations */
+        .wishlist-heart {
+            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s ease;
+        }
+        .wishlist-heart:active {
+            transform: scale(1.3);
+        }
+
+        /* Accessible focus rings */
+        a:focus-visible, button:focus-visible, input:focus-visible {
+            outline: 2px solid #5f5e5b;
+            outline-offset: 2px;
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+            .fade-in-section {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
+        /* Subtle scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1edec;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c8c7be;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #787770;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface antialiased overflow-x-hidden selection:bg-secondary-container selection:text-on-surface">
+
+    <!-- 1. Announcement Bar -->
+    <aside aria-label="Announcement" class="bg-secondary text-on-secondary py-2.5 text-center border-b border-outline-variant relative z-50 transition-colors">
+        <div class="max-w-container-max mx-auto px-gutter flex justify-center items-center gap-2">
+            <p class="font-label-caps text-[11px] md:text-label-caps uppercase tracking-[0.2em] font-medium">
+                COMPLIMENTARY SHIPPING ON ALL ORDERS OVER ₹2,000
+            </p>
+        </div>
+    </aside>
+
+    <!-- 2. Sticky Main Header Navigation -->
+    <header id="main-header" class="bg-surface/95 docked full-width top-0 sticky border-b border-outline-variant flat no shadows z-40 backdrop-blur-md transition-all duration-300">
+        <div class="flex justify-between items-center w-full px-lg py-md max-w-container-max mx-auto relative">
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="mobile-nav-curtain" class="md:hidden text-on-surface hover:opacity-70 p-1 flex items-center">
+                <span class="material-symbols-outlined font-light text-[26px]">menu</span>
+            </button>
+
+            <!-- Brand Logo -->
+            <div class="flex-shrink-0 z-10">
+                <a class="font-display-sm text-[26px] md:text-display-sm tracking-[0.2em] text-on-surface uppercase cursor-pointer hover:opacity-80 transition-opacity" href="#" aria-label="BALENTO Home">
+                    BALENTO
+                </a>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav aria-label="Primary Navigation" class="hidden md:flex space-x-xl absolute left-1/2 -translate-x-1/2 h-full items-center">
+                <a class="font-nav-link text-nav-link uppercase text-secondary hover:text-on-surface transition-colors cursor-pointer h-full flex items-center tracking-widest relative after:content-[''] after:absolute after:bottom-3 after:left-0 after:w-0 hover:after:w-full after:h-[1px] after:bg-on-surface after:transition-all" href="#collection">
+                    New Arrivals
+                </a>
+                
+                <!-- Mega Menu Trigger for Bags -->
+                <div class="mega-menu-wrapper h-full flex items-center relative cursor-pointer group">
+                    <button class="font-nav-link text-nav-link uppercase text-secondary group-hover:text-on-surface transition-colors h-full flex items-center tracking-widest gap-1 focus:outline-none" aria-haspopup="true" aria-expanded="false">
+                        <span>Bags</span>
+                        <span class="material-symbols-outlined text-[16px] transition-transform group-hover:rotate-180">expand_more</span>
+                    </button>
+                    
+                    <!-- Mega Menu Dropdown -->
+                    <div class="mega-menu absolute top-full left-1/2 -translate-x-1/2 w-[620px] bg-surface border border-outline-variant py-8 px-10 flex justify-between gap-10 z-50 shadow-sm">
+                        <div class="flex flex-col gap-4">
+                            <span class="font-label-caps text-[11px] text-tertiary uppercase tracking-[0.2em] font-semibold border-b border-outline-variant pb-2">By Category</span>
+                            <button onclick="filterProducts('all')" class="font-nav-link text-nav-link uppercase text-secondary hover:text-on-surface text-left transition-colors">All Bags (5)</button>
+                            <button onclick="filterProducts('tote')" class="font-nav-link text-nav-link uppercase text-secondary hover:text-on-surface text-left transition-colors">Totes</button>
+                            <button onclick="filterProducts('shoulder')" class="font-nav-link text-nav-link uppercase text-secondary hover:text-on-surface text-left transition-colors">Shoulder Bags</button>
+                        </div>
+                        <div class="flex flex-col gap-4">
+                            <span class="font-label-caps text-[11px] text-tertiary uppercase tracking-[0.2em] font-semibold border-b border-outline-variant pb-2">Silhouettes</span>
+                            <button onclick="filterProducts('crossbody')" class="font-nav-link text-nav-link uppercase text-secondary hover:text-on-surface text-left transition-colors">Crossbody</button>
+                            <button onclick="filterProducts('hobo')" class="font-nav-link text-nav-link uppercase text-secondary hover:text-on-surface text-left transition-colors">Hobo</button>
+                            <button onclick="filterProducts('structured')" class="font-nav-link text-nav-link uppercase text-secondary hover:text-on-surface text-left transition-colors">Structured</button>
+                        </div>
+                        <div class="w-44 bg-surface-container-low p-4 flex flex-col justify-between border border-outline-variant/60">
+                            <div>
+                                <span class="font-label-caps text-[10px] text-tertiary uppercase tracking-widest block mb-1">Editor's Pick</span>
+                                <p class="font-headline-sm text-[16px] text-on-surface leading-snug">The Verona Tote in Cognac</p>
+                            </div>
+                            <a href="#signature" class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface underline hover:opacity-70 mt-3 block">Explore Details →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="font-nav-link text-nav-link uppercase text-secondary hover:text-on-surface transition-colors cursor-pointer h-full flex items-center tracking-widest relative after:content-[''] after:absolute after:bottom-3 after:left-0 after:w-0 hover:after:w-full after:h-[1px] after:bg-on-surface after:transition-all" href="#color-story">
+                    Color Story
+                </a>
+                <a class="font-nav-link text-nav-link uppercase text-secondary hover:text-on-surface transition-colors cursor-pointer h-full flex items-center tracking-widest relative after:content-[''] after:absolute after:bottom-3 after:left-0 after:w-0 hover:after:w-full after:h-[1px] after:bg-on-surface after:transition-all" href="#craft">
+                    Our Craft
+                </a>
+            </nav>
+
+            <!-- Utility Icons (Search, Profile, Wishlist, Cart) -->
+            <div class="flex items-center space-x-md md:space-x-lg text-secondary z-10">
+                <!-- Search Button -->
+                <button id="search-open-btn" aria-label="Search Collection" class="cursor-pointer hover:text-on-surface transition-colors p-1 flex items-center">
+                    <span class="material-symbols-outlined font-light text-[24px]">search</span>
+                </button>
+                
+                <!-- Account Button -->
+                <button id="account-btn" aria-label="Account Profile" class="cursor-pointer hover:text-on-surface transition-colors p-1 hidden sm:flex items-center" title="Account">
+                    <span class="material-symbols-outlined font-light text-[24px]">person</span>
+                </button>
+                
+                <!-- Wishlist Button with Counter Badge -->
+                <button id="wishlist-btn" aria-label="View Wishlist" class="cursor-pointer hover:text-on-surface transition-colors p-1 relative flex items-center">
+                    <span class="material-symbols-outlined font-light text-[24px]" id="nav-wishlist-icon">favorite_border</span>
+                    <span id="wishlist-count-badge" class="absolute -top-1 -right-1.5 bg-tertiary text-on-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-medium opacity-0 transition-opacity scale-90">0</span>
+                </button>
+                
+                <!-- Bag / Cart Button with Badge -->
+                <button id="cart-open-btn" aria-label="Shopping Bag" class="cursor-pointer hover:text-on-surface transition-colors p-1 relative flex items-center">
+                    <span class="material-symbols-outlined font-light text-[24px]">shopping_bag</span>
+                    <span id="cart-count-badge" class="absolute -top-1 -right-1.5 bg-on-surface text-surface text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-medium opacity-0 transition-opacity scale-90">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Curtain Overlay -->
+    <div id="mobile-nav-backdrop" class="fixed inset-0 bg-on-surface/40 z-50 drawer-backdrop">
+        <div id="mobile-nav-curtain" class="fixed top-0 left-0 bottom-0 w-4/5 max-w-sm bg-surface p-8 shadow-xl flex flex-col justify-between mobile-curtain border-r border-outline-variant">
+            <div>
+                <div class="flex justify-between items-center pb-6 border-b border-outline-variant">
+                    <span class="font-display-sm text-[22px] tracking-widest text-on-surface uppercase">BALENTO</span>
+                    <button id="mobile-nav-close" aria-label="Close menu" class="p-1 text-secondary hover:text-on-surface">
+                        <span class="material-symbols-outlined text-[24px]">close</span>
+                    </button>
+                </div>
+
+                <nav class="flex flex-col gap-6 mt-8">
+                    <a href="#collection" class="mobile-nav-link font-nav-link text-[16px] uppercase tracking-widest text-on-surface" onclick="toggleMobileMenu(false);">New Arrivals</a>
+                    
+                    <div class="flex flex-col gap-3">
+                        <span class="font-label-caps text-[12px] uppercase text-tertiary tracking-[0.2em]">Collection</span>
+                        <div class="flex flex-col gap-2.5 pl-3 border-l border-outline-variant">
+                            <button onclick="filterProducts('all'); toggleMobileMenu(false);" class="text-left font-body-md text-secondary hover:text-on-surface text-[15px]">All Bags (5)</button>
+                            <button onclick="filterProducts('tote'); toggleMobileMenu(false);" class="text-left font-body-md text-secondary hover:text-on-surface text-[15px]">Totes</button>
+                            <button onclick="filterProducts('shoulder'); toggleMobileMenu(false);" class="text-left font-body-md text-secondary hover:text-on-surface text-[15px]">Shoulder Bags</button>
+                            <button onclick="filterProducts('crossbody'); toggleMobileMenu(false);" class="text-left font-body-md text-secondary hover:text-on-surface text-[15px]">Crossbody</button>
+                            <button onclick="filterProducts('hobo'); toggleMobileMenu(false);" class="text-left font-body-md text-secondary hover:text-on-surface text-[15px]">Hobo</button>
+                            <button onclick="filterProducts('structured'); toggleMobileMenu(false);" class="text-left font-body-md text-secondary hover:text-on-surface text-[15px]">Structured</button>
+                        </div>
+                    </div>
+
+                    <a href="#signature" class="mobile-nav-link font-nav-link text-[16px] uppercase tracking-widest text-on-surface" onclick="toggleMobileMenu(false);">Spotlight</a>
+                    <a href="#color-story" class="mobile-nav-link font-nav-link text-[16px] uppercase tracking-widest text-on-surface" onclick="toggleMobileMenu(false);">Color Story</a>
+                    <a href="#craft" class="mobile-nav-link font-nav-link text-[16px] uppercase tracking-widest text-on-surface" onclick="toggleMobileMenu(false);">Our Craft</a>
+                </nav>
+            </div>
+
+            <div class="pt-6 border-t border-outline-variant text-secondary text-sm">
+                <p class="font-body-md text-[13px] mb-3">Complimentary shipping across India over ₹2,000</p>
+                <div class="flex gap-4">
+                    <span class="font-label-caps text-[11px] uppercase tracking-wider text-tertiary">100% Genuine Leather</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- 3. Full-Width Hero Section -->
+        <section class="relative h-[85vh] min-h-[640px] max-h-[920px] w-full flex items-end pb-xxl px-lg overflow-hidden fade-in-section is-visible" aria-label="Campaign Hero">
+            <!-- Hero Background Image (LCP Prioritized) -->
+            <div class="absolute inset-0 z-0 overflow-hidden">
+                <img 
+                    class="w-full h-full object-cover object-[center_35%] scale-100 transform transition-transform duration-[12s] ease-out hover:scale-105" 
+                    src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=2000&q=85" 
+                    alt="Editorial fashion campaign of a modern young professional woman walking with a structured quiet luxury leather tote bag"
+                    fetchpriority="high"
+                    width="2000"
+                    height="1333"
+                />
+                <!-- Subtle Gradient Layer for Readability -->
+                <div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 via-on-surface/20 to-transparent"></div>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="relative z-10 w-full max-w-container-max mx-auto text-on-primary text-center">
+                <h1 class="font-display-lg text-[40px] sm:text-[54px] md:text-display-lg mb-md leading-tight drop-shadow-sm uppercase">
+                    MADE TO MOVE WITH YOU.
+                </h1>
+                <p class="font-body-lg text-[16px] md:text-body-lg mb-xl max-w-2xl mx-auto opacity-95 font-light tracking-wide text-primary-container">
+                    Everyday, elevated. Accessible premium leather bags curated for the modern Indian professional.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-md">
+                    <a class="bg-surface text-on-surface font-label-caps text-label-caps uppercase px-xl py-md border border-surface hover:bg-transparent hover:text-surface hover:border-surface transition-all duration-300 w-full sm:w-auto text-center font-medium shadow-sm" href="#collection">
+                        Shop The Collection
+                    </a>
+                    <a class="bg-transparent text-on-primary font-label-caps text-label-caps uppercase px-xl py-md border border-on-primary hover:bg-on-primary hover:text-on-surface transition-all duration-300 w-full sm:w-auto text-center backdrop-blur-xs font-medium" href="#about">
+                        Discover Balento
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Brand Introduction Section -->
+        <section class="py-xxl px-lg max-w-container-max mx-auto text-center fade-in-section" id="about">
+            <div class="max-w-3xl mx-auto">
+                <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.25em] mb-3 block">Quiet Luxury, Attainable</span>
+                <h2 class="font-display-sm text-[32px] md:text-display-sm mb-lg uppercase tracking-wide">
+                    DESIGNED FOR YOUR EVERYDAY.
+                </h2>
+                <p class="font-body-lg text-secondary leading-relaxed font-light">
+                    Thoughtfully designed leather bags that bring together timeless silhouettes, intuitive organization, and accessible luxury pricing. From morning commutes to evening dinner plans, crafted to transition seamlessly with your life.
+                </p>
+            </div>
+        </section>
+
+        <!-- 5. Product Collection Grid with Interactive Filters -->
+        <section class="py-xl px-lg max-w-container-max mx-auto fade-in-section" id="collection">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-xl border-b border-outline-variant pb-6 gap-6">
+                <div>
+                    <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.2em] block mb-1">Curated Season</span>
+                    <h2 class="font-display-sm text-[30px] md:text-display-sm uppercase">THE BALENTO COLLECTION</h2>
+                </div>
+                
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap gap-2 sm:gap-3" id="filter-container">
+                    <button onclick="filterProducts('all')" data-filter="all" class="filter-btn active font-label-caps text-[11px] sm:text-label-caps uppercase px-4 py-2 border border-on-surface bg-on-surface text-surface transition-all">All Bags</button>
+                    <button onclick="filterProducts('tote')" data-filter="tote" class="filter-btn font-label-caps text-[11px] sm:text-label-caps uppercase px-4 py-2 border border-outline-variant text-secondary hover:border-on-surface hover:text-on-surface transition-all">Totes</button>
+                    <button onclick="filterProducts('shoulder')" data-filter="shoulder" class="filter-btn font-label-caps text-[11px] sm:text-label-caps uppercase px-4 py-2 border border-outline-variant text-secondary hover:border-on-surface hover:text-on-surface transition-all">Shoulder</button>
+                    <button onclick="filterProducts('crossbody')" data-filter="crossbody" class="filter-btn font-label-caps text-[11px] sm:text-label-caps uppercase px-4 py-2 border border-outline-variant text-secondary hover:border-on-surface hover:text-on-surface transition-all">Crossbody</button>
+                    <button onclick="filterProducts('hobo')" data-filter="hobo" class="filter-btn font-label-caps text-[11px] sm:text-label-caps uppercase px-4 py-2 border border-outline-variant text-secondary hover:border-on-surface hover:text-on-surface transition-all">Hobo</button>
+                    <button onclick="filterProducts('structured')" data-filter="structured" class="filter-btn font-label-caps text-[11px] sm:text-label-caps uppercase px-4 py-2 border border-outline-variant text-secondary hover:border-on-surface hover:text-on-surface transition-all">Structured</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Product Cards Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-6 gap-y-12">
+                <!-- Injected via JavaScript -->
+            </div>
+        </section>
+
+        <!-- 6. Shop by Style (Category Links) -->
+        <section class="py-xxl px-lg bg-surface-container-low fade-in-section">
+            <div class="max-w-container-max mx-auto text-center">
+                <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.25em] mb-2 block">Distinctive Silhouettes</span>
+                <h2 class="font-display-sm text-[32px] md:text-display-sm mb-xl uppercase">SHOP BY STYLE</h2>
+                
+                <div class="flex flex-wrap justify-center gap-6 md:gap-12">
+                    <button onclick="filterProducts('tote')" class="group text-center">
+                        <span class="font-headline-sm text-[20px] md:text-headline-sm text-secondary group-hover:text-on-surface transition-colors uppercase border-b border-transparent group-hover:border-on-surface pb-1">Totes</span>
+                    </button>
+                    <button onclick="filterProducts('shoulder')" class="group text-center">
+                        <span class="font-headline-sm text-[20px] md:text-headline-sm text-secondary group-hover:text-on-surface transition-colors uppercase border-b border-transparent group-hover:border-on-surface pb-1">Shoulder</span>
+                    </button>
+                    <button onclick="filterProducts('crossbody')" class="group text-center">
+                        <span class="font-headline-sm text-[20px] md:text-headline-sm text-secondary group-hover:text-on-surface transition-colors uppercase border-b border-transparent group-hover:border-on-surface pb-1">Crossbody</span>
+                    </button>
+                    <button onclick="filterProducts('hobo')" class="group text-center">
+                        <span class="font-headline-sm text-[20px] md:text-headline-sm text-secondary group-hover:text-on-surface transition-colors uppercase border-b border-transparent group-hover:border-on-surface pb-1">Hobo</span>
+                    </button>
+                    <button onclick="filterProducts('structured')" class="group text-center">
+                        <span class="font-headline-sm text-[20px] md:text-headline-sm text-secondary group-hover:text-on-surface transition-colors uppercase border-b border-transparent group-hover:border-on-surface pb-1">Structured</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Signature Product Feature Spotlight -->
+        <section id="signature" class="py-xxl px-lg max-w-container-max mx-auto fade-in-section">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                <!-- Visual Showcase -->
+                <div class="flex-1 w-full relative aspect-[4/5] bg-surface-container overflow-hidden border border-outline-variant/60">
+                    <img 
+                        src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=1200&q=80" 
+                        alt="Verona Tote signature details and craftsmanship"
+                        class="w-full h-full object-cover object-center"
+                        loading="lazy"
+                        decoding="async"
+                        width="1200"
+                        height="1500"
+                    />
+                    <div class="absolute bottom-4 left-4 bg-surface/90 backdrop-blur-md px-4 py-2 border border-outline-variant text-[11px] font-label-caps uppercase tracking-widest text-on-surface">
+                        Signature Edition • The Verona
+                    </div>
+                </div>
+
+                <!-- Editorial Feature Copy -->
+                <div class="flex-1 text-left">
+                    <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.2em] mb-2 block">Craftsmanship Spotlight</span>
+                    <h2 class="font-display-sm text-[32px] md:text-[40px] uppercase mb-4 leading-tight">
+                        THE VERONA TOTE.<br/>ENGINEERED FOR WORK &amp; WANDER.
+                    </h2>
+                    <p class="font-body-lg text-secondary mb-8 font-light leading-relaxed">
+                        Designed with purposeful geometry and hand-burnished edges. Built to carry a 14-inch MacBook, dedicated diary pocket, magnetic key clasp, and an internal water-resistant umbrella sleeve without bulging.
+                    </p>
+
+                    <!-- Feature Matrix -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 border-y border-outline-variant py-6">
+                        <div class="flex flex-col">
+                            <span class="font-label-caps text-[11px] uppercase tracking-widest text-tertiary mb-1">Capacity</span>
+                            <p class="font-body-md text-on-surface font-medium">14" Laptop Sleeve + Daily Essentials</p>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-label-caps text-[11px] uppercase tracking-widest text-tertiary mb-1">Weight</span>
+                            <p class="font-body-md text-on-surface font-medium">Ultra-lightweight 680 grams</p>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-label-caps text-[11px] uppercase tracking-widest text-tertiary mb-1">Material</span>
+                            <p class="font-body-md text-on-surface font-medium">Fine Grain Nappa Leather</p>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-label-caps text-[11px] uppercase tracking-widest text-tertiary mb-1">Hardware</span>
+                            <p class="font-body-md text-on-surface font-medium">Brushed Matte Brass</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <button onclick="quickAddById('verona-tote')" class="bg-on-surface text-surface font-label-caps text-label-caps uppercase px-xl py-md border border-on-surface hover:bg-surface hover:text-on-surface transition-all duration-300">
+                            Add Verona to Bag • ₹2,499
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Trust Section (Why Balento) -->
+        <section class="py-xxl px-lg max-w-container-max mx-auto border-t border-outline-variant/60 fade-in-section">
+            <div class="text-center max-w-2xl mx-auto mb-xl">
+                <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.2em] block mb-2">Our Promise</span>
+                <h2 class="font-display-sm text-[30px] md:text-display-sm uppercase">WHY BALENTO</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-xl text-center">
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center mb-md border border-outline-variant/60">
+                        <span class="material-symbols-outlined text-[28px] text-tertiary font-light">diamond</span>
+                    </div>
+                    <h3 class="font-headline-sm text-[20px] mb-sm uppercase">Premium Materials</h3>
+                    <p class="font-body-md text-secondary text-sm leading-relaxed font-light">
+                        Full-grain and fine nappa leathers selected for exceptional softness, resilience, and rich patina.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center mb-md border border-outline-variant/60">
+                        <span class="material-symbols-outlined text-[28px] text-tertiary font-light">work</span>
+                    </div>
+                    <h3 class="font-headline-sm text-[20px] mb-sm uppercase">Designed for Everyday</h3>
+                    <p class="font-body-md text-secondary text-sm leading-relaxed font-light">
+                        Precision compartments for your laptop, tech accessories, sunglasses, and daily necessities.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center mb-md border border-outline-variant/60">
+                        <span class="material-symbols-outlined text-[28px] text-tertiary font-light">hourglass_empty</span>
+                    </div>
+                    <h3 class="font-headline-sm text-[20px] mb-sm uppercase">Timeless by Design</h3>
+                    <p class="font-body-md text-secondary text-sm leading-relaxed font-light">
+                        Minimalist architecture free from loud logos that outlasts fast fashion micro-trends.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center mb-md border border-outline-variant/60">
+                        <span class="material-symbols-outlined text-[28px] text-tertiary font-light">sell</span>
+                    </div>
+                    <h3 class="font-headline-sm text-[20px] mb-sm uppercase">Accessible Premium</h3>
+                    <p class="font-body-md text-secondary text-sm leading-relaxed font-light">
+                        Direct-to-consumer ethics offering luxury craftsmanship without the 10x traditional markup.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Lifestyle Editorial Section (One Bag. Many Moments) -->
+        <section class="py-xxl px-lg max-w-container-max mx-auto fade-in-section">
+            <div class="flex flex-col lg:flex-row items-center gap-xl">
+                <div class="flex-1 w-full relative aspect-[4/3] lg:aspect-[3/4] overflow-hidden border border-outline-variant/60">
+                    <img 
+                        alt="Modern South Asian professional carrying Balento shoulder bag in urban architectural space" 
+                        class="w-full h-full object-cover object-center" 
+                        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80" 
+                        loading="lazy"
+                        decoding="async"
+                        width="1200"
+                        height="900"
+                    />
+                </div>
+                <div class="flex-1 text-center lg:text-left">
+                    <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.2em] mb-2 block">Lifestyle Editorial</span>
+                    <h2 class="font-display-sm text-[32px] md:text-display-sm mb-md uppercase">ONE BAG. MANY MOMENTS.</h2>
+                    <p class="font-body-lg text-secondary mb-lg leading-relaxed font-light">
+                        From morning board meetings in Koramangala to leisurely weekend brunches in Bandra and evening dinners at BKC. Balento bags are architected to transition effortlessly across every rhythm of your schedule.
+                    </p>
+                    <a class="inline-block bg-on-surface text-surface font-label-caps text-label-caps uppercase px-xl py-md border border-on-surface hover:bg-surface hover:text-on-surface transition-colors duration-300" href="#collection">
+                        Shop The Edit
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Interactive Color Story (Three Shades. Endless Outfits) -->
+        <section id="color-story" class="py-xxl px-lg bg-surface-container-low fade-in-section">
+            <div class="max-w-container-max mx-auto text-center">
+                <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.2em] mb-2 block">Curated Palette</span>
+                <h2 class="font-display-sm text-[32px] md:text-display-sm mb-lg uppercase">THREE SHADES. ENDLESS OUTFITS.</h2>
+                <p class="font-body-lg text-secondary mb-xl max-w-2xl mx-auto font-light leading-relaxed">
+                    Thoughtfully color-matched in Obsidian Black, Rich Cognac, and Deep Coffee Brown to harmonize with your complete capsule wardrobe.
+                </p>
+                
+                <!-- Swatches -->
+                <div class="flex justify-center gap-8 md:gap-16 mb-8" id="color-story-swatches">
+                    <!-- Black -->
+                    <button onclick="selectColorStory('black')" class="color-story-btn active flex flex-col items-center gap-sm group focus:outline-none" data-color="black">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-on-surface transition-transform duration-300 group-hover:scale-105 shadow-sm p-0.5">
+                            <div class="w-full h-full rounded-full bg-[#1c1b1b]"></div>
+                        </div>
+                        <span class="font-label-caps text-label-caps text-on-surface font-semibold tracking-widest">BLACK</span>
+                    </button>
+                    
+                    <!-- Cognac -->
+                    <button onclick="selectColorStory('cognac')" class="color-story-btn flex flex-col items-center gap-sm group focus:outline-none" data-color="cognac">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-transparent transition-transform duration-300 group-hover:scale-105 shadow-sm p-0.5">
+                            <div class="w-full h-full rounded-full bg-[#8B5A2B]"></div>
+                        </div>
+                        <span class="font-label-caps text-label-caps text-secondary group-hover:text-on-surface tracking-widest">COGNAC</span>
+                    </button>
+                    
+                    <!-- Coffee Brown -->
+                    <button onclick="selectColorStory('coffee')" class="color-story-btn flex flex-col items-center gap-sm group focus:outline-none" data-color="coffee">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-transparent transition-transform duration-300 group-hover:scale-105 shadow-sm p-0.5">
+                            <div class="w-full h-full rounded-full bg-[#4A3B32]"></div>
+                        </div>
+                        <span class="font-label-caps text-label-caps text-secondary group-hover:text-on-surface tracking-widest">COFFEE BROWN</span>
+                    </button>
+                </div>
+
+                <!-- Active Shade Insight Card -->
+                <div id="color-story-desc" class="max-w-xl mx-auto bg-surface p-6 border border-outline-variant text-center transition-all duration-300">
+                    <p class="font-body-md text-on-surface font-medium mb-1" id="color-story-title">Obsidian Black • The Architectural Classic</p>
+                    <p class="font-body-md text-secondary text-sm font-light" id="color-story-text">Sleek, commanding, and timeless. Pairs effortlessly with tailored trench coats, monochrome suits, and casual denim alike.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. Social Proof (Loved IRL) -->
+        <section class="py-xxl px-lg max-w-container-max mx-auto fade-in-section">
+            <div class="text-center max-w-2xl mx-auto mb-xl">
+                <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.2em] block mb-2">Verified Reviews</span>
+                <h2 class="font-display-sm text-[32px] md:text-display-sm uppercase">LOVED IRL.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-xl text-center">
+                <!-- Review 1 -->
+                <article class="flex flex-col items-center bg-surface-container-lowest p-8 border border-outline-variant/60 shadow-xs">
+                    <div class="flex text-tertiary mb-md" aria-label="5 stars rating">
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                    </div>
+                    <blockquote class="font-body-md text-[17px] italic mb-md font-light text-on-surface leading-relaxed">
+                        "Finally, a work bag that actually looks chic. The Verona Tote fits my laptop perfectly without looking bulky in client meetings."
+                    </blockquote>
+                    <cite class="font-label-caps text-[11px] text-secondary uppercase tracking-widest not-italic font-medium">
+                        — Priya M., Bengaluru • Verified Buyer
+                    </cite>
+                </article>
+
+                <!-- Review 2 -->
+                <article class="flex flex-col items-center bg-surface-container-lowest p-8 border border-outline-variant/60 shadow-xs">
+                    <div class="flex text-tertiary mb-md" aria-label="5 stars rating">
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                    </div>
+                    <blockquote class="font-body-md text-[17px] italic mb-md font-light text-on-surface leading-relaxed">
+                        "The leather quality is incredible for this price point. The Alba Hobo is buttery soft and has become my everyday go-to."
+                    </blockquote>
+                    <cite class="font-label-caps text-[11px] text-secondary uppercase tracking-widest not-italic font-medium">
+                        — Ananya S., Mumbai • Verified Buyer
+                    </cite>
+                </article>
+
+                <!-- Review 3 -->
+                <article class="flex flex-col items-center bg-surface-container-lowest p-8 border border-outline-variant/60 shadow-xs">
+                    <div class="flex text-tertiary mb-md" aria-label="5 stars rating">
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                    </div>
+                    <blockquote class="font-body-md text-[17px] italic mb-md font-light text-on-surface leading-relaxed">
+                        "Minimal, elegant, and super functional. Exactly what I was looking for in a daily crossbody. Highly recommend!"
+                    </blockquote>
+                    <cite class="font-label-caps text-[11px] text-secondary uppercase tracking-widest not-italic font-medium">
+                        — Riya D., New Delhi • Verified Buyer
+                    </cite>
+                </article>
+            </div>
+        </section>
+
+        <!-- 12. Brand Story & Craftsmanship Section -->
+        <section id="craft" class="py-xxl px-lg bg-surface-container max-w-container-max mx-auto border border-outline-variant/60 fade-in-section">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="flex-1">
+                    <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.2em] mb-2 block">Our Ethos</span>
+                    <h2 class="font-display-sm text-[32px] md:text-display-sm uppercase mb-4">THE BALENTO STANDARD</h2>
+                    <p class="font-body-md text-secondary leading-relaxed mb-4 font-light">
+                        We started BALENTO with a clear mission: redefine accessible luxury for the contemporary woman. Traditional luxury brands inflate bag prices by up to 10x through excessive ad spends and celebrity overheads.
+                    </p>
+                    <p class="font-body-md text-secondary leading-relaxed mb-6 font-light">
+                        We invest directly into fine materials, reinforced structural stitching, and ethical artisanal workshops — delivering a bag that looks, feels, and endures like heirloom luxury at ₹2,000–₹2,500.
+                    </p>
+                    <div class="flex items-center gap-6">
+                        <div>
+                            <span class="font-display-sm text-[28px] text-on-surface block">100%</span>
+                            <span class="font-label-caps text-[10px] text-tertiary uppercase tracking-widest">Ethical Sourcing</span>
+                        </div>
+                        <div class="h-10 w-[1px] bg-outline-variant"></div>
+                        <div>
+                            <span class="font-display-sm text-[28px] text-on-surface block">Zero</span>
+                            <span class="font-label-caps text-[10px] text-tertiary uppercase tracking-widest">Middleman Markup</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 w-full aspect-[4/3] overflow-hidden border border-outline-variant/80">
+                    <img 
+                        src="https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=1200&q=80" 
+                        alt="Artisanal leather craft and hand stitching"
+                        class="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                </div>
+            </div>
+        </section>
+
+        <!-- 13. Newsletter / Community Section -->
+        <section class="py-xxl px-lg bg-surface border-t border-outline-variant fade-in-section" id="newsletter">
+            <div class="max-w-xl mx-auto text-center">
+                <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.2em] mb-2 block">Inner Circle</span>
+                <h2 class="font-display-sm text-[30px] md:text-display-sm mb-md uppercase">STAY IN THE LOOP</h2>
+                <p class="font-body-lg text-secondary mb-lg font-light">
+                    Join our community for early access to limited seasonal runs, styling notes, and exclusive member privileges.
+                </p>
+                
+                <form id="newsletter-form" class="flex flex-col sm:flex-row gap-sm" onsubmit="handleNewsletterSubmit(event)">
+                    <label for="newsletter-email" class="sr-only">Email address</label>
+                    <input 
+                        id="newsletter-email" 
+                        name="email" 
+                        required 
+                        autocomplete="email" 
+                        class="flex-1 bg-surface-container-lowest border border-outline-variant px-md py-3 font-body-md text-body-md focus:outline-none focus:border-on-surface transition-colors placeholder:text-outline" 
+                        placeholder="Enter your email address" 
+                        type="email"
+                    />
+                    <button 
+                        class="bg-on-surface text-surface font-label-caps text-label-caps uppercase px-xl py-3 border border-on-surface hover:bg-surface hover:text-on-surface transition-colors duration-300 font-medium" 
+                        type="submit"
+                    >
+                        Subscribe
+                    </button>
+                </form>
+                <p id="newsletter-feedback" class="font-label-caps text-[11px] text-accent-sage mt-3 uppercase tracking-wider hidden">
+                    ✓ Welcome to Balento. Please check your inbox.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- 14. Footer Component -->
+    <footer class="bg-surface-container-low full-width bottom border-t border-outline-variant flat no shadows">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-xl px-lg py-xxl w-full max-w-container-max mx-auto fade-in-section">
+            <!-- Brand Column -->
+            <div class="flex flex-col gap-lg">
+                <h2 class="font-display-sm text-[26px] text-on-surface uppercase tracking-widest">BALENTO</h2>
+                <p class="font-body-md text-secondary text-sm max-w-xs font-light leading-relaxed">
+                    Accessible premium bags for the modern Indian professional. Crafted with intention, designed for your everyday.
+                </p>
+                <div class="flex gap-md mt-sm text-secondary">
+                    <a aria-label="Instagram" class="hover:text-on-surface transition-colors p-1" href="#instagram"><span class="material-symbols-outlined">photo_camera</span></a>
+                    <a aria-label="Facebook" class="hover:text-on-surface transition-colors p-1" href="#facebook"><span class="material-symbols-outlined">thumb_up</span></a>
+                    <a aria-label="Pinterest" class="hover:text-on-surface transition-colors p-1" href="#pinterest"><span class="material-symbols-outlined">push_pin</span></a>
+                </div>
+            </div>
+
+            <!-- Links Column 1: Shop -->
+            <div class="flex flex-col gap-md">
+                <h3 class="font-label-caps text-label-caps text-tertiary uppercase tracking-widest font-semibold">Shop</h3>
+                <nav class="flex flex-col gap-2 text-sm">
+                    <button onclick="filterProducts('all')" class="text-left font-body-md text-secondary hover:text-on-surface transition-colors">All Bags</button>
+                    <button onclick="filterProducts('tote')" class="text-left font-body-md text-secondary hover:text-on-surface transition-colors">Totes</button>
+                    <button onclick="filterProducts('shoulder')" class="text-left font-body-md text-secondary hover:text-on-surface transition-colors">Shoulder Bags</button>
+                    <button onclick="filterProducts('crossbody')" class="text-left font-body-md text-secondary hover:text-on-surface transition-colors">Crossbody</button>
+                    <button onclick="filterProducts('hobo')" class="text-left font-body-md text-secondary hover:text-on-surface transition-colors">Hobo</button>
+                    <button onclick="filterProducts('structured')" class="text-left font-body-md text-secondary hover:text-on-surface transition-colors">Structured</button>
+                </nav>
+            </div>
+
+            <!-- Links Column 2: About -->
+            <div class="flex flex-col gap-md">
+                <h3 class="font-label-caps text-label-caps text-tertiary uppercase tracking-widest font-semibold">About</h3>
+                <nav class="flex flex-col gap-2 text-sm">
+                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#about">Our Story</a>
+                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#craft">Materials &amp; Care</a>
+                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#craft">Sustainability</a>
+                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#about">Careers</a>
+                </nav>
+            </div>
+
+            <!-- Links Column 3: Help & Service -->
+            <div class="flex flex-col gap-md">
+                <h3 class="font-label-caps text-label-caps text-tertiary uppercase tracking-widest font-semibold">Help</h3>
+                <nav class="flex flex-col gap-2 text-sm">
+                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#help">FAQ</a>
+                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#shipping">Shipping &amp; Returns</a>
+                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#track">Track Order</a>
+                    <a class="font-body-md text-secondary hover:text-on-surface transition-colors" href="#contact">Contact Us</a>
+                </nav>
+            </div>
+        </div>
+
+        <div class="border-t border-outline-variant px-lg py-md w-full max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-md">
+            <p class="font-label-caps text-[11px] text-secondary uppercase">© 2026 BALENTO. All Rights Reserved.</p>
+            <div class="flex gap-md">
+                <a class="font-label-caps text-[11px] text-secondary hover:text-on-surface transition-colors uppercase" href="#privacy">Privacy Policy</a>
+                <a class="font-label-caps text-[11px] text-secondary hover:text-on-surface transition-colors uppercase" href="#terms">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====================================================== -->
+    <!-- INTERACTIVE SLIDE-OUT CART DRAWER                     -->
+    <!-- ====================================================== -->
+    <div id="cart-backdrop" class="fixed inset-0 bg-on-surface/50 z-50 drawer-backdrop" aria-hidden="true">
+        <aside id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-surface p-6 sm:p-8 shadow-2xl flex flex-col justify-between drawer-panel border-l border-outline-variant z-50">
+            <!-- Header -->
+            <div>
+                <div class="flex justify-between items-center pb-4 border-b border-outline-variant">
+                    <div class="flex items-center gap-2">
+                        <h2 id="cart-title" class="font-display-sm text-[22px] uppercase">Your Bag</h2>
+                        <span id="cart-header-count" class="font-label-caps text-[11px] text-tertiary">(0 items)</span>
+                    </div>
+                    <button id="cart-close-btn" aria-label="Close Cart" class="p-1 text-secondary hover:text-on-surface">
+                        <span class="material-symbols-outlined text-[24px]">close</span>
+                    </button>
+                </div>
+
+                <!-- Free Shipping Progress Bar -->
+                <div class="py-4 border-b border-outline-variant bg-surface-container-low -mx-6 sm:-mx-8 px-6 sm:px-8">
+                    <p id="shipping-progress-text" class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface mb-2 font-medium">
+                        Add ₹2,000 to unlock Complimentary Shipping
+                    </p>
+                    <div class="w-full bg-outline-variant h-1.5 overflow-hidden">
+                        <div id="shipping-progress-bar" class="bg-on-surface h-full w-0 transition-all duration-500 ease-out"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Items Container -->
+            <div id="cart-items-container" class="flex-1 overflow-y-auto my-4 pr-1 flex flex-col gap-4">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Footer / Subtotal / Checkout -->
+            <div class="border-t border-outline-variant pt-4">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="font-body-md text-secondary">Subtotal</span>
+                    <span id="cart-subtotal" class="font-headline-sm text-[20px] text-on-surface font-semibold">₹0</span>
+                </div>
+                <div class="flex justify-between items-center mb-4 text-xs">
+                    <span class="font-body-md text-secondary">Shipping</span>
+                    <span id="cart-shipping-status" class="font-label-caps uppercase text-secondary">Calculated above</span>
+                </div>
+                <button id="checkout-btn" class="w-full bg-on-surface text-surface font-label-caps text-label-caps uppercase py-4 hover:bg-surface hover:text-on-surface border border-on-surface transition-all duration-300 font-medium">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ====================================================== -->
+    <!-- INTERACTIVE SEARCH OVERLAY MODAL                       -->
+    <!-- ====================================================== -->
+    <div id="search-modal-backdrop" class="fixed inset-0 bg-on-surface/50 z-50 drawer-backdrop flex items-start justify-center pt-20 px-4" aria-hidden="true">
+        <div id="search-modal-panel" role="dialog" aria-modal="true" aria-labelledby="search-label" class="bg-surface w-full max-w-2xl border border-outline-variant p-6 sm:p-8 shadow-2xl modal-panel">
+            <div class="flex justify-between items-center pb-4 border-b border-outline-variant">
+                <span id="search-label" class="font-label-caps text-[11px] uppercase tracking-[0.2em] text-tertiary">Live Collection Search</span>
+                <button id="search-close-btn" aria-label="Close search" class="p-1 text-secondary hover:text-on-surface">
+                    <span class="material-symbols-outlined text-[24px]">close</span>
+                </button>
+            </div>
+
+            <div class="relative my-6">
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    placeholder="Search by name, silhouette, or color (e.g. Tote, Cognac, Hobo)..." 
+                    class="w-full bg-surface-container-lowest border border-outline-variant px-4 py-3 text-body-md text-on-surface focus:outline-none focus:border-on-surface"
+                />
+            </div>
+
+            <!-- Quick Suggestions -->
+            <div class="mb-6 flex flex-wrap items-center gap-2">
+                <span class="font-label-caps text-[10px] text-tertiary uppercase tracking-wider mr-2">Popular:</span>
+                <button onclick="applySearchQuery('Tote')" class="font-label-caps text-[11px] uppercase px-2.5 py-1 bg-surface-container border border-outline-variant hover:border-on-surface text-secondary hover:text-on-surface">Tote</button>
+                <button onclick="applySearchQuery('Crossbody')" class="font-label-caps text-[11px] uppercase px-2.5 py-1 bg-surface-container border border-outline-variant hover:border-on-surface text-secondary hover:text-on-surface">Crossbody</button>
+                <button onclick="applySearchQuery('Cognac')" class="font-label-caps text-[11px] uppercase px-2.5 py-1 bg-surface-container border border-outline-variant hover:border-on-surface text-secondary hover:text-on-surface">Cognac</button>
+                <button onclick="applySearchQuery('Structured')" class="font-label-caps text-[11px] uppercase px-2.5 py-1 bg-surface-container border border-outline-variant hover:border-on-surface text-secondary hover:text-on-surface">Structured</button>
+            </div>
+
+            <!-- Live Search Results -->
+            <div id="search-results" class="max-h-72 overflow-y-auto flex flex-col gap-3">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================== -->
+    <!-- CLIENT APPLICATION JAVASCRIPT                          -->
+    <!-- ====================================================== -->
+    <script>
+        /**
+         * BALENTO Product Catalog Data Model
+         * 5 Core Products with Verified Details
+         */
+        const PRODUCTS = [
+            {
+                id: "verona-tote",
+                name: "Verona Tote",
+                category: "tote",
+                price: 2499,
+                description: "Spacious architectural tote with a padded 14-inch laptop compartment and reinforced leather straps.",
+                images: {
+                    primary: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=900&q=80",
+                    hover: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=80"
+                },
+                colors: [
+                    { name: "Black", hex: "#1c1b1b" },
+                    { name: "Cognac", hex: "#8B5A2B" },
+                    { name: "Coffee Brown", hex: "#4A3B32" }
+                ],
+                tag: "Best Seller"
+            },
+            {
+                id: "elara-shoulder",
+                name: "Elara Shoulder",
+                category: "shoulder",
+                price: 2299,
+                description: "Sculptural crescent shoulder bag with a fluid silhouette and smooth magnetic closure.",
+                images: {
+                    primary: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=900&q=80",
+                    hover: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=900&q=80"
+                },
+                colors: [
+                    { name: "Black", hex: "#1c1b1b" },
+                    { name: "Cognac", hex: "#8B5A2B" },
+                    { name: "Coffee Brown", hex: "#4A3B32" }
+                ],
+                tag: "Trending"
+            },
+            {
+                id: "cora-crossbody",
+                name: "Cora Crossbody",
+                category: "crossbody",
+                price: 2099,
+                description: "Clean, hands-free daily essential with an adjustable strap and dual internal card organizers.",
+                images: {
+                    primary: "https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?auto=format&fit=crop&w=900&q=80",
+                    hover: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80"
+                },
+                colors: [
+                    { name: "Black", hex: "#1c1b1b" },
+                    { name: "Cognac", hex: "#8B5A2B" },
+                    { name: "Coffee Brown", hex: "#4A3B32" }
+                ],
+                tag: "Essential"
+            },
+            {
+                id: "alba-hobo",
+                name: "Alba Hobo",
+                category: "hobo",
+                price: 2399,
+                description: "Relaxed slouch silhouette crafted from ultra-supple nappa leather with an ergonomic shoulder drop.",
+                images: {
+                    primary: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=80",
+                    hover: "https://images.unsplash.com/photo-1575032617751-6ddec2089882?auto=format&fit=crop&w=900&q=80"
+                },
+                colors: [
+                    { name: "Black", hex: "#1c1b1b" },
+                    { name: "Cognac", hex: "#8B5A2B" },
+                    { name: "Coffee Brown", hex: "#4A3B32" }
+                ],
+                tag: "Editor's Pick"
+            },
+            {
+                id: "mira-structured",
+                name: "Mira Structured",
+                category: "structured",
+                price: 2499,
+                description: "Architectural top-handle bag with a detachable crossbody strap and gold-tone protective base feet.",
+                images: {
+                    primary: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=900&q=80",
+                    hover: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80"
+                },
+                colors: [
+                    { name: "Black", hex: "#1c1b1b" },
+                    { name: "Cognac", hex: "#8B5A2B" },
+                    { name: "Coffee Brown", hex: "#4A3B32" }
+                ],
+                tag: "New"
+            }
+        ];
+
+        // State
+        let cart = [];
+        let wishlist = new Set();
+        let selectedProductColors = {}; // productId -> colorName
+        let currentFilter = 'all';
+
+        // Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            initScrollObserver();
+            initHeaderScroll();
+            loadState();
+            renderProductGrid();
+            initDrawersAndModals();
+        });
+
+        /* -------------------------------------------------------------
+           Scroll Observer & Reveal Animations
+           ------------------------------------------------------------- */
+        function initScrollObserver() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -40px 0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-section').forEach((el) => {
+                observer.observe(el);
+            });
+        }
+
+        function initHeaderScroll() {
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    header.classList.add('py-1', 'border-b', 'border-outline-variant/80', 'shadow-xs');
+                } else {
+                    header.classList.remove('py-1', 'shadow-xs');
+                }
+            }, { passive: true });
+        }
+
+        /* -------------------------------------------------------------
+           State & LocalStorage
+           ------------------------------------------------------------- */
+        function loadState() {
+            try {
+                const savedCart = localStorage.getItem('balento_cart');
+                if (savedCart) cart = JSON.parse(savedCart);
+                
+                const savedWish = localStorage.getItem('balento_wishlist');
+                if (savedWish) wishlist = new Set(JSON.parse(savedWish));
+            } catch (e) {
+                console.warn('LocalStorage access restricted:', e);
+            }
+            updateCartUI();
+            updateWishlistUI();
+        }
+
+        function saveCartState() {
+            try {
+                localStorage.setItem('balento_cart', JSON.stringify(cart));
+            } catch (e) {}
+            updateCartUI();
+        }
+
+        function saveWishlistState() {
+            try {
+                localStorage.setItem('balento_wishlist', JSON.stringify(Array.from(wishlist)));
+            } catch (e) {}
+            updateWishlistUI();
+        }
+
+        /* -------------------------------------------------------------
+           Product Grid Rendering & Filtering
+           ------------------------------------------------------------- */
+        function renderProductGrid() {
+            const grid = document.getElementById('product-grid');
+            if (!grid) return;
+
+            const filtered = currentFilter === 'all' 
+                ? PRODUCTS 
+                : PRODUCTS.filter(p => p.category === currentFilter);
+
+            grid.innerHTML = filtered.map(product => {
+                const selectedColor = selectedProductColors[product.id] || product.colors[0].name;
+                const isWishlisted = wishlist.has(product.id);
+
+                return `
+                    <div class="group cursor-pointer flex flex-col" data-product-id="${product.id}">
+                        <!-- Image Container with Aspect Ratio (Prevents CLS) -->
+                        <div class="aspect-[4/5] bg-surface-container overflow-hidden relative mb-4 image-hover-wrapper border border-outline-variant/50">
+                            <img 
+                                src="${product.images.primary}" 
+                                alt="${product.name} in premium leather" 
+                                class="w-full h-full object-cover object-center primary-image"
+                                loading="lazy"
+                                decoding="async"
+                                width="900"
+                                height="1125"
+                            />
+                            <img 
+                                src="${product.images.hover}" 
+                                alt="${product.name} lifestyle detail" 
+                                class="w-full h-full object-cover object-center absolute inset-0 hover-image opacity-0"
+                                loading="lazy"
+                                decoding="async"
+                                width="900"
+                                height="1125"
+                            />
+                            
+                            <!-- Wishlist Heart Button -->
+                            <button 
+                                onclick="toggleWishlist('${product.id}', event)" 
+                                aria-label="Add ${product.name} to wishlist" 
+                                class="absolute top-3 right-3 text-secondary hover:text-on-surface z-20 p-1.5 bg-surface/70 backdrop-blur-xs transition-colors"
+                            >
+                                <span class="material-symbols-outlined text-[20px] wishlist-heart ${isWishlisted ? 'text-on-surface' : ''}" style="${isWishlisted ? "font-variation-settings: 'FILL' 1;" : ''}">
+                                    ${isWishlisted ? 'favorite' : 'favorite_border'}
+                                </span>
+                            </button>
+
+                            <!-- Quick Add Overlay (Desktop Hover + Touch Friendly) -->
+                            <div class="absolute bottom-0 left-0 w-full p-2.5 opacity-0 group-hover:opacity-100 sm:translate-y-2 group-hover:translate-y-0 transition-all duration-300 bg-surface/90 backdrop-blur-md flex justify-center z-20 border-t border-outline-variant">
+                                <button 
+                                    onclick="quickAddById('${product.id}', event)" 
+                                    class="w-full py-2 font-label-caps text-[11px] uppercase tracking-[0.15em] text-on-surface hover:text-surface hover:bg-on-surface transition-all font-medium text-center"
+                                >
+                                    Quick Add • ₹${product.price.toLocaleString('en-IN')}
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product Information -->
+                        <div class="text-center flex flex-col items-center">
+                            <h3 class="font-label-caps text-[13px] uppercase tracking-wider mb-1 text-on-surface">${product.name}</h3>
+                            <p class="font-headline-sm text-[18px] text-secondary mb-2.5">₹${product.price.toLocaleString('en-IN')}</p>
+                            
+                            <!-- Color Swatches -->
+                            <div class="flex justify-center gap-1.5" aria-label="Available Colors">
+                                ${product.colors.map(col => `
+                                    <button 
+                                        onclick="changeProductColor('${product.id}', '${col.name}', event)"
+                                        aria-label="${col.name}"
+                                        title="${col.name}"
+                                        class="w-4 h-4 rounded-full border ${selectedColor === col.name ? 'ring-1 ring-on-surface ring-offset-1 border-transparent' : 'border-outline-variant'} transition-all"
+                                        style="background-color: ${col.hex};"
+                                    ></button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterProducts(category) {
+            currentFilter = category;
+            
+            // Update filter button styling
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.classList.add('active', 'bg-on-surface', 'text-surface', 'border-on-surface');
+                    btn.classList.remove('text-secondary', 'border-outline-variant');
+                } else {
+                    btn.classList.remove('active', 'bg-on-surface', 'text-surface', 'border-on-surface');
+                    btn.classList.add('text-secondary', 'border-outline-variant');
+                }
+            });
+
+            renderProductGrid();
+
+            // Smoothly scroll to collection section if clicked from menu/footer
+            const collectionSection = document.getElementById('collection');
+            if (collectionSection && (window.scrollY > collectionSection.offsetTop + 400 || window.scrollY < collectionSection.offsetTop - 200)) {
+                collectionSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function changeProductColor(productId, colorName, event) {
+            if (event) event.stopPropagation();
+            selectedProductColors[productId] = colorName;
+            renderProductGrid();
+        }
+
+        /* -------------------------------------------------------------
+           Cart Drawer Mechanics & Free Shipping Bar
+           ------------------------------------------------------------- */
+        function toggleCart(isOpen) {
+            const backdrop = document.getElementById('cart-backdrop');
+            const drawer = document.getElementById('cart-drawer');
+            if (isOpen) {
+                backdrop.classList.add('active');
+                drawer.classList.add('active');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                backdrop.classList.remove('active');
+                drawer.classList.remove('active');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        function quickAddById(productId, event) {
+            if (event) event.stopPropagation();
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            const selectedColor = selectedProductColors[productId] || product.colors[0].name;
+            const existingIndex = cart.findIndex(item => item.id === productId && item.color === selectedColor);
+
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    color: selectedColor,
+                    image: product.images.primary,
+                    quantity: 1
+                });
+            }
+
+            saveCartState();
+            toggleCart(true);
+        }
+
+        function updateCartQuantity(index, delta) {
+            if (!cart[index]) return;
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            saveCartState();
+        }
+
+        function removeCartItem(index) {
+            if (!cart[index]) return;
+            cart.splice(index, 1);
+            saveCartState();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const countBadge = document.getElementById('cart-count-badge');
+            const headerCount = document.getElementById('cart-header-count');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const progressText = document.getElementById('shipping-progress-text');
+            const progressBar = document.getElementById('shipping-progress-bar');
+            const shippingStatus = document.getElementById('cart-shipping-status');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            // Badge count
+            if (totalItems > 0) {
+                countBadge.textContent = totalItems;
+                countBadge.classList.remove('opacity-0');
+            } else {
+                countBadge.classList.add('opacity-0');
+            }
+
+            if (headerCount) headerCount.textContent = `(${totalItems} ${totalItems === 1 ? 'item' : 'items'})`;
+            if (subtotalEl) subtotalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+
+            // Free shipping threshold (₹2,000)
+            const threshold = 2000;
+            if (subtotal >= threshold) {
+                progressBar.style.width = '100%';
+                progressBar.classList.add('bg-accent-sage');
+                progressBar.classList.remove('bg-on-surface');
+                progressText.innerHTML = `<span class="text-accent-sage font-semibold">✓ You've unlocked Complimentary Shipping!</span>`;
+                if (shippingStatus) shippingStatus.textContent = "FREE";
+            } else {
+                const diff = threshold - subtotal;
+                const percentage = Math.min(100, Math.round((subtotal / threshold) * 100));
+                progressBar.style.width = `${percentage}%`;
+                progressBar.classList.remove('bg-accent-sage');
+                progressBar.classList.add('bg-on-surface');
+                progressText.textContent = `Add ₹${diff.toLocaleString('en-IN')} more to unlock Complimentary Shipping`;
+                if (shippingStatus) shippingStatus.textContent = "₹150 (Free over ₹2,000)";
+            }
+
+            // Render Items
+            if (!container) return;
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="flex-1 flex flex-col items-center justify-center text-center p-6 my-auto">
+                        <span class="material-symbols-outlined text-[48px] text-tertiary font-light mb-3">shopping_bag</span>
+                        <p class="font-headline-sm text-[20px] text-on-surface mb-2 uppercase">Your bag is empty</p>
+                        <p class="font-body-md text-secondary text-sm mb-6">Discover timeless pieces designed for your everyday wardrobe.</p>
+                        <button onclick="toggleCart(false)" class="bg-on-surface text-surface font-label-caps text-[11px] uppercase px-6 py-3 border border-on-surface hover:bg-surface hover:text-on-surface transition-all">
+                            Explore Collection
+                        </button>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map((item, index) => `
+                    <div class="flex gap-4 pb-4 border-b border-outline-variant/60 items-center">
+                        <img src="${item.image}" alt="${item.name}" class="w-20 h-24 object-cover border border-outline-variant flex-shrink-0 bg-surface-container" />
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-label-caps text-[13px] uppercase text-on-surface truncate">${item.name}</h4>
+                                <button onclick="removeCartItem(${index})" aria-label="Remove item" class="text-secondary hover:text-on-surface p-1">
+                                    <span class="material-symbols-outlined text-[18px]">close</span>
+                                </button>
+                            </div>
+                            <p class="font-body-md text-[13px] text-secondary mb-2">Color: ${item.color}</p>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center border border-outline-variant bg-surface-container-lowest">
+                                    <button onclick="updateCartQuantity(${index}, -1)" class="px-2 py-1 text-secondary hover:text-on-surface text-xs font-semibold focus:outline-none">-</button>
+                                    <span class="px-2.5 py-1 text-xs font-medium">${item.quantity}</span>
+                                    <button onclick="updateCartQuantity(${index}, 1)" class="px-2 py-1 text-secondary hover:text-on-surface text-xs font-semibold focus:outline-none">+</button>
+                                </div>
+                                <span class="font-body-md text-sm font-semibold text-on-surface">₹${(item.price * item.quantity).toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        /* -------------------------------------------------------------
+           Wishlist Mechanics
+           ------------------------------------------------------------- */
+        function toggleWishlist(productId, event) {
+            if (event) event.stopPropagation();
+            if (wishlist.has(productId)) {
+                wishlist.delete(productId);
+            } else {
+                wishlist.add(productId);
+            }
+            saveWishlistState();
+            renderProductGrid();
+        }
+
+        function updateWishlistUI() {
+            const badge = document.getElementById('wishlist-count-badge');
+            const icon = document.getElementById('nav-wishlist-icon');
+            if (wishlist.size > 0) {
+                if (badge) {
+                    badge.textContent = wishlist.size;
+                    badge.classList.remove('opacity-0');
+                }
+                if (icon) icon.style.fontVariationSettings = "'FILL' 1";
+            } else {
+                if (badge) badge.classList.add('opacity-0');
+                if (icon) icon.style.fontVariationSettings = "'FILL' 0";
+            }
+        }
+
+        /* -------------------------------------------------------------
+           Search Modal & Real-Time Querying
+           ------------------------------------------------------------- */
+        function toggleSearch(isOpen) {
+            const backdrop = document.getElementById('search-modal-backdrop');
+            const panel = document.getElementById('search-modal-panel');
+            const input = document.getElementById('search-input');
+            if (isOpen) {
+                backdrop.classList.add('active');
+                panel.classList.add('active');
+                document.body.classList.add('overflow-hidden');
+                setTimeout(() => input && input.focus(), 100);
+                performSearch('');
+            } else {
+                backdrop.classList.remove('active');
+                panel.classList.remove('active');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        function performSearch(query) {
+            const resultsContainer = document.getElementById('search-results');
+            const q = query.trim().toLowerCase();
+
+            const matches = PRODUCTS.filter(p => {
+                if (!q) return true;
+                return p.name.toLowerCase().includes(q) ||
+                       p.category.toLowerCase().includes(q) ||
+                       p.description.toLowerCase().includes(q) ||
+                       p.colors.some(c => c.name.toLowerCase().includes(q));
+            });
+
+            if (matches.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="text-center py-6 text-secondary text-sm">
+                        No matches found for "<span class="text-on-surface font-medium">${query}</span>". Try searching for "Tote" or "Cognac".
+                    </div>
+                `;
+            } else {
+                resultsContainer.innerHTML = matches.map(p => `
+                    <div class="flex items-center justify-between p-2.5 hover:bg-surface-container transition-colors border border-outline-variant/40">
+                        <div class="flex items-center gap-3">
+                            <img src="${p.images.primary}" alt="${p.name}" class="w-12 h-14 object-cover border border-outline-variant" />
+                            <div>
+                                <h4 class="font-label-caps text-[12px] uppercase text-on-surface">${p.name}</h4>
+                                <span class="font-body-md text-xs text-secondary">₹${p.price.toLocaleString('en-IN')} • ${p.category}</span>
+                            </div>
+                        </div>
+                        <button onclick="toggleSearch(false); quickAddById('${p.id}');" class="bg-on-surface text-surface text-[10px] font-label-caps uppercase px-3 py-1.5 hover:bg-surface-tint">
+                            Add to Bag
+                        </button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function applySearchQuery(text) {
+            const input = document.getElementById('search-input');
+            if (input) {
+                input.value = text;
+                performSearch(text);
+            }
+        }
+
+        /* -------------------------------------------------------------
+           Mobile Curtain Navigation
+           ------------------------------------------------------------- */
+        function toggleMobileMenu(isOpen) {
+            const backdrop = document.getElementById('mobile-nav-backdrop');
+            const curtain = document.getElementById('mobile-nav-curtain');
+            const btn = document.getElementById('mobile-menu-btn');
+            if (isOpen) {
+                backdrop.classList.add('active');
+                curtain.classList.add('active');
+                btn.setAttribute('aria-expanded', 'true');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                backdrop.classList.remove('active');
+                curtain.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        /* -------------------------------------------------------------
+           Interactive Color Story Selector
+           ------------------------------------------------------------- */
+        const COLOR_STORY_DATA = {
+            black: {
+                title: "Obsidian Black • The Architectural Classic",
+                text: "Sleek, commanding, and timeless. Pairs effortlessly with tailored trench coats, monochrome business suits, and casual denim alike."
+            },
+            cognac: {
+                title: "Rich Cognac • Warm Organic Tone",
+                text: "Warm caramel leather that develops a luscious patina over time. Brings rich tonal depth to linen, neutrals, and crisp white poplin."
+            },
+            coffee: {
+                title: "Deep Coffee Brown • Understated Luxury",
+                text: "Subtle espresso depth offering an elevated alternative to traditional black. A sophisticated companion for cashmere, taupe, and earth tones."
+            }
+        };
+
+        function selectColorStory(shadeKey) {
+            const data = COLOR_STORY_DATA[shadeKey];
+            if (!data) return;
+
+            document.querySelectorAll('.color-story-btn').forEach(btn => {
+                const circle = btn.querySelector('div');
+                if (btn.dataset.color === shadeKey) {
+                    btn.classList.add('active');
+                    circle.classList.add('border-on-surface');
+                    circle.classList.remove('border-transparent');
+                    btn.querySelector('span').classList.add('text-on-surface', 'font-semibold');
+                    btn.querySelector('span').classList.remove('text-secondary');
+                } else {
+                    btn.classList.remove('active');
+                    circle.classList.remove('border-on-surface');
+                    circle.classList.add('border-transparent');
+                    btn.querySelector('span').classList.remove('text-on-surface', 'font-semibold');
+                    btn.querySelector('span').classList.add('text-secondary');
+                }
+            });
+
+            const titleEl = document.getElementById('color-story-title');
+            const textEl = document.getElementById('color-story-text');
+            if (titleEl && textEl) {
+                titleEl.textContent = data.title;
+                textEl.textContent = data.text;
+            }
+        }
+
+        /* -------------------------------------------------------------
+           Newsletter Handling
+           ------------------------------------------------------------- */
+        function handleNewsletterSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('newsletter-email');
+            const feedback = document.getElementById('newsletter-feedback');
+            if (input && input.value) {
+                feedback.classList.remove('hidden');
+                input.value = '';
+                setTimeout(() => feedback.classList.add('hidden'), 5000);
+            }
+        }
+
+        /* -------------------------------------------------------------
+           Event Listeners Setup
+           ------------------------------------------------------------- */
+        function initDrawersAndModals() {
+            // Cart events
+            document.getElementById('cart-open-btn')?.addEventListener('click', () => toggleCart(true));
+            document.getElementById('cart-close-btn')?.addEventListener('click', () => toggleCart(false));
+            document.getElementById('cart-backdrop')?.addEventListener('click', (e) => {
+                if (e.target.id === 'cart-backdrop') toggleCart(false);
+            });
+
+            // Search events
+            document.getElementById('search-open-btn')?.addEventListener('click', () => toggleSearch(true));
+            document.getElementById('search-close-btn')?.addEventListener('click', () => toggleSearch(false));
+            document.getElementById('search-modal-backdrop')?.addEventListener('click', (e) => {
+                if (e.target.id === 'search-modal-backdrop') toggleSearch(false);
+            });
+            document.getElementById('search-input')?.addEventListener('input', (e) => performSearch(e.target.value));
+
+            // Mobile nav events
+            document.getElementById('mobile-menu-btn')?.addEventListener('click', () => toggleMobileMenu(true));
+            document.getElementById('mobile-nav-close')?.addEventListener('click', () => toggleMobileMenu(false));
+            document.getElementById('mobile-nav-backdrop')?.addEventListener('click', (e) => {
+                if (e.target.id === 'mobile-nav-backdrop') toggleMobileMenu(false);
+            });
+
+            // Keyboard shortcut (Escape & Cmd+K)
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    toggleCart(false);
+                    toggleSearch(false);
+                    toggleMobileMenu(false);
+                }
+                if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                    e.preventDefault();
+                    toggleSearch(true);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
