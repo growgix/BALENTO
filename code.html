@@ -935,6 +935,62 @@
             </div>
         </section>
 
+        <!-- 11B. NEW SECTION: Community Street Style (Styled By You) -->
+        <section id="styled-by-you" class="py-xxl px-lg max-w-container-max mx-auto border-t border-outline-variant/60 fade-in-section">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-4">
+                <div>
+                    <span class="font-label-caps text-label-caps text-tertiary uppercase tracking-[0.2em] block mb-1">In The Wild</span>
+                    <h2 class="font-display-sm text-[30px] md:text-display-sm uppercase">STYLED BY YOU</h2>
+                </div>
+                <p class="font-body-md text-secondary text-sm max-w-md">
+                    Tag <span class="text-on-surface font-medium">@BalentoOfficial</span> and <span class="text-on-surface font-medium">#BalentoEveryday</span> on Instagram for a chance to be featured in our seasonal editorial gallery.
+                </p>
+            </div>
+
+            <!-- 4-Tile Editorial Lookbook Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Look 1 -->
+                <div class="group relative aspect-[3/4] overflow-hidden border border-outline-variant/60 bg-surface-container cursor-pointer" onclick="openLookModal('bengaluru')">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" alt="Styled in Bengaluru with Verona Tote" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-on-primary">
+                        <span class="font-label-caps text-[10px] text-surface-dim uppercase tracking-widest">Koramangala, Bengaluru</span>
+                        <p class="font-headline-sm text-[16px] text-surface mt-1">Sneha R. • The Verona Tote</p>
+                        <span class="font-label-caps text-[11px] underline uppercase mt-2">View Look &amp; Bag →</span>
+                    </div>
+                </div>
+
+                <!-- Look 2 -->
+                <div class="group relative aspect-[3/4] overflow-hidden border border-outline-variant/60 bg-surface-container cursor-pointer" onclick="openLookModal('mumbai')">
+                    <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=80" alt="Styled in Mumbai with Elara Shoulder" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-on-primary">
+                        <span class="font-label-caps text-[10px] text-surface-dim uppercase tracking-widest">Bandra West, Mumbai</span>
+                        <p class="font-headline-sm text-[16px] text-surface mt-1">Tanvi K. • Elara Shoulder</p>
+                        <span class="font-label-caps text-[11px] underline uppercase mt-2">View Look &amp; Bag →</span>
+                    </div>
+                </div>
+
+                <!-- Look 3 -->
+                <div class="group relative aspect-[3/4] overflow-hidden border border-outline-variant/60 bg-surface-container cursor-pointer" onclick="openLookModal('delhi')">
+                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" alt="Styled in Delhi with Cora Crossbody" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-on-primary">
+                        <span class="font-label-caps text-[10px] text-surface-dim uppercase tracking-widest">Khan Market, Delhi</span>
+                        <p class="font-headline-sm text-[16px] text-surface mt-1">Meera V. • Cora Crossbody</p>
+                        <span class="font-label-caps text-[11px] underline uppercase mt-2">View Look &amp; Bag →</span>
+                    </div>
+                </div>
+
+                <!-- Look 4 -->
+                <div class="group relative aspect-[3/4] overflow-hidden border border-outline-variant/60 bg-surface-container cursor-pointer" onclick="openLookModal('goa')">
+                    <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80" alt="Styled in Goa with Alba Hobo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-on-primary">
+                        <span class="font-label-caps text-[10px] text-surface-dim uppercase tracking-widest">Assagao, Goa</span>
+                        <p class="font-headline-sm text-[16px] text-surface mt-1">Aarohi D. • Alba Hobo</p>
+                        <span class="font-label-caps text-[11px] underline uppercase mt-2">View Look &amp; Bag →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- 12. Brand Story & Craftsmanship Section -->
         <section id="craft" class="py-xxl px-lg bg-surface-container max-w-container-max mx-auto border border-outline-variant/60 fade-in-section">
             <div class="flex flex-col lg:flex-row items-center gap-12">
@@ -1117,7 +1173,18 @@
             </div>
 
             <!-- Footer / Subtotal / Checkout -->
-            <div class="border-t border-outline-variant pt-4">
+            <div class="border-t border-outline-variant pt-3">
+                <!-- Complimentary Gifting Option -->
+                <div class="p-3 bg-surface-container-low border border-outline-variant/60 mb-3">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="gift-checkbox" onchange="toggleGiftOptions(this.checked)" class="text-on-surface focus:ring-0 rounded-none w-3.5 h-3.5" />
+                        <span class="font-label-caps text-[10px] uppercase tracking-wider text-on-surface font-medium">Complimentary Gift Box &amp; Handwritten Note</span>
+                    </label>
+                    <div id="gift-note-wrapper" class="hidden mt-2 pt-2 border-t border-outline-variant/50">
+                        <textarea id="gift-note-text" placeholder="Enter personal gift note (e.g. Happy Birthday Priya! With love...)" maxlength="140" class="w-full bg-surface-container-lowest border border-outline-variant p-2 text-xs font-body-md focus:outline-none focus:border-on-surface" rows="2"></textarea>
+                    </div>
+                </div>
+
                 <div class="flex justify-between items-center mb-2">
                     <span class="font-body-md text-secondary">Subtotal</span>
                     <span id="cart-subtotal" class="font-headline-sm text-[20px] text-on-surface font-semibold">₹0</span>
@@ -1326,6 +1393,20 @@
             <!-- Live Search Results -->
             <div id="search-results" class="max-h-72 overflow-y-auto flex flex-col gap-3">
                 <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================== -->
+    <!-- INTERACTIVE STREET STYLE LOOKBOOK MODAL                -->
+    <!-- ====================================================== -->
+    <div id="look-modal-backdrop" class="fixed inset-0 bg-on-surface/60 z-50 drawer-backdrop flex items-center justify-center p-4 sm:p-6" aria-hidden="true">
+        <div id="look-modal-panel" role="dialog" aria-modal="true" class="bg-surface w-full max-w-xl border border-outline-variant shadow-2xl modal-panel relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeLookModal()" aria-label="Close look dialog" class="absolute top-4 right-4 z-20 p-2 bg-surface/80 backdrop-blur-sm text-secondary hover:text-on-surface">
+                <span class="material-symbols-outlined text-[24px]">close</span>
+            </button>
+            <div id="look-modal-content" class="p-6 sm:p-8">
+                <!-- Injected dynamically -->
             </div>
         </div>
     </div>
@@ -1780,11 +1861,21 @@
                         </div>
 
                         <!-- Specifications List -->
-                        <div class="bg-surface-container-low p-4 border border-outline-variant/60 mb-6 text-xs space-y-1.5 font-body-md text-secondary">
+                        <div class="bg-surface-container-low p-4 border border-outline-variant/60 mb-4 text-xs space-y-1.5 font-body-md text-secondary">
                             <p><strong>Dimensions:</strong> ${product.dimensions}</p>
                             <p><strong>Weight:</strong> ${product.weight}</p>
                             <p><strong>Highlights:</strong> ${product.features.join(' • ')}</p>
                             <p class="text-accent-sage font-medium">✓ In Stock • Express Dispatch in 24 Hours</p>
+                        </div>
+
+                        <!-- Pincode Delivery Checker -->
+                        <div class="mb-5 pb-4 border-b border-outline-variant/60">
+                            <label class="font-label-caps text-[10px] uppercase tracking-wider block text-tertiary mb-1 font-semibold">Delivery &amp; COD Estimator</label>
+                            <div class="flex gap-2">
+                                <input id="qv-pincode-input" type="text" maxlength="6" placeholder="Enter 6-digit PIN (e.g. 560034)" class="flex-1 bg-surface-container-lowest border border-outline-variant px-3 py-1.5 text-xs focus:outline-none focus:border-on-surface" />
+                                <button onclick="checkPincodeDelivery()" class="bg-surface-container border border-outline-variant px-3 py-1.5 font-label-caps text-[10px] uppercase hover:border-on-surface">Check</button>
+                            </div>
+                            <p id="qv-pincode-result" class="text-xs font-body-md mt-1.5 hidden"></p>
                         </div>
 
                         <!-- CTA buttons -->
@@ -1805,6 +1896,119 @@
             backdrop.classList.add('active');
             panel.classList.add('active');
             document.body.classList.add('overflow-hidden');
+        }
+
+        function checkPincodeDelivery() {
+            const input = document.getElementById('qv-pincode-input');
+            const result = document.getElementById('qv-pincode-result');
+            if (!input || !result) return;
+
+            const pin = input.value.trim();
+            if (pin.length === 6 && /^\d+$/.test(pin)) {
+                result.className = "text-xs font-body-md text-accent-sage mt-1.5";
+                result.innerHTML = `✓ <strong>Express Delivery:</strong> 2 business days to PIN ${pin} via Air Cargo • COD &amp; 7-Day Returns Available.`;
+                result.classList.remove('hidden');
+            } else {
+                result.className = "text-xs font-body-md text-[#b3261e] mt-1.5";
+                result.textContent = "Please enter a valid 6-digit Indian PIN Code.";
+                result.classList.remove('hidden');
+            }
+        }
+
+        function toggleGiftOptions(isChecked) {
+            const wrapper = document.getElementById('gift-note-wrapper');
+            if (wrapper) {
+                if (isChecked) {
+                    wrapper.classList.remove('hidden');
+                    showToast("✓ Added complimentary gift box & card");
+                } else {
+                    wrapper.classList.add('hidden');
+                }
+            }
+        }
+
+        /* -------------------------------------------------------------
+           Lookbook Street Style Modal
+           ------------------------------------------------------------- */
+        const LOOKBOOK_DATA = {
+            bengaluru: {
+                city: "Bengaluru • Koramangala",
+                person: "Sneha Reddy (Founder & Designer)",
+                bagId: "verona-tote",
+                bagName: "The Verona Tote",
+                price: "₹2,499",
+                image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80",
+                quote: "The Verona effortlessly carries my 14\" MacBook, sketchbook, and tech pouches across client pitches without looking bulky."
+            },
+            mumbai: {
+                city: "Mumbai • Bandra West",
+                person: "Tanvi Kapoor (Creative Director)",
+                bagId: "elara-shoulder",
+                bagName: "The Elara Shoulder",
+                price: "₹2,299",
+                image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80",
+                quote: "The fluid crescent silhouette transitions from morning meetings in BKC to seaside dinner drinks in Bandra effortlessly."
+            },
+            delhi: {
+                city: "New Delhi • Khan Market",
+                person: "Meera Verma (Architect)",
+                bagId: "cora-crossbody",
+                bagName: "The Cora Crossbody",
+                price: "₹2,099",
+                image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80",
+                quote: "Hands-free perfection. The scratch-resistant grain has endured daily commutes and weekend gallery strolls beautifully."
+            },
+            goa: {
+                city: "Goa • Assagao",
+                person: "Aarohi Dave (Writer & Curator)",
+                bagId: "alba-hobo",
+                bagName: "The Alba Hobo",
+                price: "₹2,399",
+                image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=900&q=80",
+                quote: "Unstructured elegance at its finest. The nappa leather feels like liquid butter and fits all my weekend essentials."
+            }
+        };
+
+        function openLookModal(lookKey) {
+            const look = LOOKBOOK_DATA[lookKey];
+            if (!look) return;
+
+            const content = document.getElementById('look-modal-content');
+            content.innerHTML = `
+                <div class="w-full sm:w-1/2 aspect-[3/4] bg-surface-container overflow-hidden border border-outline-variant">
+                    <img src="${look.image}" alt="${look.person}" class="w-full h-full object-cover" />
+                </div>
+                <div class="w-full sm:w-1/2 text-left flex flex-col justify-between">
+                    <div>
+                        <span class="font-label-caps text-[10px] text-tertiary uppercase tracking-widest block mb-1">${look.city}</span>
+                        <h3 class="font-display-sm text-[22px] uppercase text-on-surface mb-2">${look.person}</h3>
+                        <blockquote class="font-body-md text-secondary text-sm italic font-light leading-relaxed mb-4 border-l-2 border-outline-variant pl-3">
+                            "${look.quote}"
+                        </blockquote>
+                    </div>
+                    <div class="pt-4 border-t border-outline-variant">
+                        <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary block mb-1">Featured Bag:</span>
+                        <p class="font-headline-sm text-[18px] text-on-surface mb-3 font-semibold">${look.bagName} • ${look.price}</p>
+                        <button onclick="closeLookModal(); openQuickView('${look.bagId}');" class="w-full bg-on-surface text-surface font-label-caps text-[11px] uppercase py-3 border border-on-surface hover:bg-surface hover:text-on-surface transition-all text-center">
+                            Shop This Bag →
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            const backdrop = document.getElementById('look-modal-backdrop');
+            const panel = document.getElementById('look-modal-panel');
+            backdrop.classList.add('active');
+            panel.classList.add('active');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeLookModal() {
+            const backdrop = document.getElementById('look-modal-backdrop');
+            const panel = document.getElementById('look-modal-panel');
+            backdrop.classList.remove('active');
+            panel.classList.remove('active');
+            document.body.classList.remove('overflow-hidden');
         }
 
         function closeQuickView() {
@@ -2402,6 +2606,11 @@
                 if (e.target.id === 'info-modal-backdrop') toggleInfoModal(false);
             });
 
+            // Lookbook modal backdrop click
+            document.getElementById('look-modal-backdrop')?.addEventListener('click', (e) => {
+                if (e.target.id === 'look-modal-backdrop') closeLookModal();
+            });
+
             // Search events
             document.getElementById('search-open-btn')?.addEventListener('click', () => toggleSearch(true));
             document.getElementById('search-close-btn')?.addEventListener('click', () => toggleSearch(false));
@@ -2425,6 +2634,7 @@
                     closeQuickView();
                     closeCheckoutModal();
                     toggleInfoModal(false);
+                    closeLookModal();
                     toggleSearch(false);
                     toggleMobileMenu(false);
                 }
