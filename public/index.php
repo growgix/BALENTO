@@ -23,6 +23,8 @@ use App\Controllers\ProductController;
 use App\Controllers\PincodeController;
 use App\Controllers\CouponController;
 use App\Controllers\OrderController;
+use App\Controllers\NewsletterController;
+use App\Controllers\LookbookController;
 
 // 2. Load Environment Variables & Configuration
 $rootDir = dirname(__DIR__);
@@ -74,6 +76,12 @@ $router->group(['prefix' => '/api'], function (Router $api) {
 
     // Public Order Tracking
     $api->get('/orders/track/{order_number}', [OrderController::class, 'track']);
+
+    // Newsletter Subscription
+    $api->post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'], [RateLimitMiddleware::forRoute('general')]);
+
+    // Curated Street Style Lookbook
+    $api->get('/lookbook', [LookbookController::class, 'index']);
 });
 
 // 4. Dispatch Request & Emit Response
