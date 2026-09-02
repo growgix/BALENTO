@@ -45,8 +45,8 @@ final class AuthMiddleware implements MiddlewareInterface
             return Response::forbidden('Access forbidden. Insufficient permissions for this resource.');
         }
 
-        // Attach authenticated user payload to request
-        $request->setRouteParams(array_merge($request->query(), ['_auth_user' => $claims]));
+        // Attach authenticated user payload to request attribute
+        $request->setAttribute('_auth_user', $claims);
 
         return $next($request);
     }

@@ -16,6 +16,7 @@ final class Request
     private string $rawBody;
     private array $headers;
     private array $routeParams = [];
+    private array $attributes = [];
 
     public function __construct(
         string $method,
@@ -23,7 +24,8 @@ final class Request
         array $queryParams = [],
         array $body = [],
         string $rawBody = '',
-        array $headers = []
+        array $headers = [],
+        array $attributes = []
     ) {
         $this->method = strtoupper($method);
         $this->path = '/' . trim($path, '/');
@@ -31,6 +33,7 @@ final class Request
         $this->body = $body;
         $this->rawBody = $rawBody;
         $this->headers = $headers;
+        $this->attributes = $attributes;
     }
 
     public static function createFromGlobals(): self
@@ -126,9 +129,24 @@ final class Request
         $this->routeParams = $params;
     }
 
+    public function getRouteParams(): array
+    {
+        return $this->routeParams;
+    }
+
     public function param(string $key, mixed $default = null): mixed
     {
         return $this->routeParams[$key] ?? $default;
+    }
+
+    public function setAttribute(string $key, mixed $value): void
+    {
+        $this->attributes[$key] = $value;
+    }
+
+    public function getAttribute(string $key, mixed $default = null): mixed
+    {
+        return $this->attributes[$key] ?? $default;
     }
 
     public function getClientIp(): string

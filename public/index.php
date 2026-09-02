@@ -25,6 +25,7 @@ use App\Controllers\CouponController;
 use App\Controllers\OrderController;
 use App\Controllers\NewsletterController;
 use App\Controllers\LookbookController;
+use App\Controllers\AdminController;
 
 // 2. Load Environment Variables & Configuration
 $rootDir = dirname(__DIR__);
@@ -58,10 +59,10 @@ $router->get('/api/health', function (Request $req) {
 });
 
 // -----------------------------------------------------------------------------
-// Public Routes
+// Public Storefront Routes
 // -----------------------------------------------------------------------------
 $router->group(['prefix' => '/api'], function (Router $api) {
-    // Products
+    // Products Catalog
     $api->get('/products', [ProductController::class, 'index']);
     $api->get('/products/{slug_or_id}', [ProductController::class, 'show']);
 
@@ -82,6 +83,33 @@ $router->group(['prefix' => '/api'], function (Router $api) {
 
     // Curated Street Style Lookbook
     $api->get('/lookbook', [LookbookController::class, 'index']);
+
+    // Admin Public Login
+    $api->post('/admin/login', [AdminController::class, 'login'], [RateLimitMiddleware::forRoute('login')]);
+});
+
+// -----------------------------------------------------------------------------
+// Protected Admin Backoffice Routes
+// -----------------------------------------------------------------------------
+$router->group(['prefix' => '/api/admin', 'middleware' => new AuthMiddleware(['admin', 'manager'])], function (Router $admin) {
+    // Profile & Diagnostics
+    $admin->get('/me', [AdminController::class, 'me']);
+    $admin->get('/dashboard/stats', [AdminController::class, 'dashboardStats']);
+
+    // Orders Management
+    $admin->get('/orders', [AdminController::class, 'orders']);
+    $admin->put('/orders/{id}/status', [AdminController::class, 'updateOrderStatus']);
+
+    // Product Management (CRUD)
+    $admin->post('/products', [AdminController::class, 'createProduct']);
+    $admin->put('/products/{id}', [AdminController::class, 'updateProduct']);
+    $admin->delete('/products/{id}', [AdminController::class, 'deleteProduct']);
+
+    // Inventory Control
+    $admin->put('/inventory/adjust', [AdminController::class, 'adjustInventory']);
+
+    // Coupons Management
+    $admin->post('/coupons', [AdminController::class, 'createCoupon']);
 });
 
 // 4. Dispatch Request & Emit Response
