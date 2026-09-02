@@ -1,0 +1,14 @@
+.env
+.env.local
+.env.*.local
+vendor/
+composer.lock
+storage/logs/*.log
+storage/cache/*
+storage/sessions/*
+!storage/logs/.gitkeep
+!storage/cache/.gitkeep
+*.sqlite
+*.db
+.DS_Store
+Thumbs.db
