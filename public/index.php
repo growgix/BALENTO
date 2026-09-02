@@ -20,6 +20,8 @@ use App\Middleware\JsonBodyMiddleware;
 use App\Middleware\RateLimitMiddleware;
 use App\Middleware\AuthMiddleware;
 use App\Controllers\ProductController;
+use App\Controllers\PincodeController;
+use App\Controllers\CouponController;
 
 // 2. Load Environment Variables & Configuration
 $rootDir = dirname(__DIR__);
@@ -56,8 +58,15 @@ $router->get('/api/health', function (Request $req) {
 // Public Product Catalog Routes
 // -----------------------------------------------------------------------------
 $router->group(['prefix' => '/api'], function (Router $api) {
+    // Products
     $api->get('/products', [ProductController::class, 'index']);
     $api->get('/products/{slug_or_id}', [ProductController::class, 'show']);
+
+    // Pincode & Delivery Serviceability
+    $api->post('/pincode/check', [PincodeController::class, 'check'], [RateLimitMiddleware::forRoute('pincode')]);
+
+    // Coupon & Pricing Validation
+    $api->post('/coupons/validate', [CouponController::class, 'validate'], [RateLimitMiddleware::forRoute('coupon')]);
 });
 
 // 4. Dispatch Request & Emit Response
