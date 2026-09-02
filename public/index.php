@@ -19,6 +19,7 @@ use App\Middleware\CorsMiddleware;
 use App\Middleware\JsonBodyMiddleware;
 use App\Middleware\RateLimitMiddleware;
 use App\Middleware\AuthMiddleware;
+use App\Controllers\ProductController;
 
 // 2. Load Environment Variables & Configuration
 $rootDir = dirname(__DIR__);
@@ -40,7 +41,7 @@ $router->use(new CorsMiddleware());
 $router->use(new JsonBodyMiddleware());
 
 // -----------------------------------------------------------------------------
-// Health Check & Base Routes
+// Health Check & Diagnostic Routes
 // -----------------------------------------------------------------------------
 $router->get('/api/health', function (Request $req) {
     return Response::success([
@@ -52,15 +53,11 @@ $router->get('/api/health', function (Request $req) {
 });
 
 // -----------------------------------------------------------------------------
-// Route Registrations (Placeholder routes dispatched to controllers in next phases)
+// Public Product Catalog Routes
 // -----------------------------------------------------------------------------
 $router->group(['prefix' => '/api'], function (Router $api) {
-    // Phase 5: Product routes
-    // Phase 6: Pincode & Coupon routes
-    // Phase 7: Order & Checkout routes
-    // Phase 8: Tracking routes
-    // Phase 9: Newsletter & Lookbook routes
-    // Phase 10-11: Admin routes
+    $api->get('/products', [ProductController::class, 'index']);
+    $api->get('/products/{slug_or_id}', [ProductController::class, 'show']);
 });
 
 // 4. Dispatch Request & Emit Response
