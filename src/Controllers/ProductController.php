@@ -30,7 +30,9 @@ final class ProductController
         return Response::success([
             'products' => $result['items'],
             'pagination' => $result['pagination'],
-        ], 'Products retrieved successfully.');
+        ], 'Products retrieved successfully.', 200, [
+            'Cache-Control' => 'public, max-age=60, s-maxage=300, stale-while-revalidate=120',
+        ]);
     }
 
     /**
@@ -45,6 +47,8 @@ final class ProductController
             return Response::notFound("Product '{$identifier}' not found.");
         }
 
-        return Response::success($product, 'Product details retrieved successfully.');
+        return Response::success($product, 'Product details retrieved successfully.', 200, [
+            'Cache-Control' => 'public, max-age=60, s-maxage=300, stale-while-revalidate=120',
+        ]);
     }
 }

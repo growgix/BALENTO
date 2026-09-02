@@ -26,6 +26,8 @@ final class LookbookController
     public function index(Request $request): Response
     {
         $items = $this->lookbookService->getLookbook();
-        return Response::success($items, 'Lookbook items retrieved successfully.');
+        return Response::success($items, 'Lookbook items retrieved successfully.', 200, [
+            'Cache-Control' => 'public, max-age=300, s-maxage=600, stale-while-revalidate=120',
+        ]);
     }
 }
