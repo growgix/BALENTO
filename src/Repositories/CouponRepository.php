@@ -43,13 +43,14 @@ final class CouponRepository
     public function findByCodeForUpdate(PDO $transactionPdo, string $code): ?array
     {
         $normalized = strtoupper(trim($code));
+        $isSqlite = ($transactionPdo->getAttribute(PDO::ATTR_DRIVER_NAME) === 'sqlite');
+        $forUpdateClause = $isSqlite ? '' : ' FOR UPDATE';
 
         $sql = "SELECT id, code, discount_type, discount_value, min_order_amount, max_discount_cap, 
                        usage_limit, usage_count, is_active, starts_at, expires_at 
                 FROM coupons 
                 WHERE code = :code 
-                LIMIT 1 
-                FOR UPDATE";
+                LIMIT 1{$forUpdateClause}";
 
         $stmt = $transactionPdo->prepare($sql);
         $stmt->bindValue(':code', $normalized);

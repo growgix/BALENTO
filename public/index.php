@@ -22,6 +22,7 @@ use App\Middleware\AuthMiddleware;
 use App\Controllers\ProductController;
 use App\Controllers\PincodeController;
 use App\Controllers\CouponController;
+use App\Controllers\OrderController;
 
 // 2. Load Environment Variables & Configuration
 $rootDir = dirname(__DIR__);
@@ -55,7 +56,7 @@ $router->get('/api/health', function (Request $req) {
 });
 
 // -----------------------------------------------------------------------------
-// Public Product Catalog Routes
+// Public Routes
 // -----------------------------------------------------------------------------
 $router->group(['prefix' => '/api'], function (Router $api) {
     // Products
@@ -67,6 +68,9 @@ $router->group(['prefix' => '/api'], function (Router $api) {
 
     // Coupon & Pricing Validation
     $api->post('/coupons/validate', [CouponController::class, 'validate'], [RateLimitMiddleware::forRoute('coupon')]);
+
+    // Atomic Checkout & Orders
+    $api->post('/orders/checkout', [OrderController::class, 'checkout'], [RateLimitMiddleware::forRoute('checkout')]);
 });
 
 // 4. Dispatch Request & Emit Response
