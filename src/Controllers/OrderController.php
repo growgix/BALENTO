@@ -9,7 +9,7 @@ use App\Core\Response;
 use App\Services\OrderService;
 
 /**
- * Controller handling Checkout and Order Creation.
+ * Controller handling Checkout, Order Creation, and Public Tracking.
  */
 final class OrderController
 {
@@ -40,5 +40,20 @@ final class OrderController
 
         $statusCode = $result['status_code'] ?? 201;
         return Response::json(true, $result['message'], $result['order'], [], $statusCode);
+    }
+
+    /**
+     * GET /api/orders/track/{order_number}
+     */
+    public function track(Request $request): Response
+    {
+        $orderNumber = (string) $request->param('order_number', '');
+        $tracking = $this->orderService->getPublicTracking($orderNumber);
+
+        if (!$tracking) {
+            return Response::notFound("Order '{$orderNumber}' not found. Please verify your reference number.");
+        }
+
+        return Response::success($tracking, 'Order tracking details retrieved.');
     }
 }

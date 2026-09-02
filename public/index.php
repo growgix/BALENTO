@@ -71,6 +71,9 @@ $router->group(['prefix' => '/api'], function (Router $api) {
 
     // Atomic Checkout & Orders
     $api->post('/orders/checkout', [OrderController::class, 'checkout'], [RateLimitMiddleware::forRoute('checkout')]);
+
+    // Public Order Tracking
+    $api->get('/orders/track/{order_number}', [OrderController::class, 'track']);
 });
 
 // 4. Dispatch Request & Emit Response

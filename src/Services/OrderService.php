@@ -286,6 +286,103 @@ final class OrderService
         return $this->orderRepository->findByOrderNumber(trim($orderNumber));
     }
 
+    /**
+     * Retrieve privacy-safe public order tracking status and fulfillment timeline.
+     */
+    public function getPublicTracking(string $orderNumber): ?array
+    {
+        $order = $this->orderRepository->findByOrderNumber(trim($orderNumber));
+        if (!$order) {
+            return null;
+        }
+
+        // Mask sensitive customer data for public tracking safety
+        $maskedEmail = $this->maskEmail($order['customer_email']);
+        $maskedPhone = $this->maskPhone($order['customer_phone']);
+
+        $timeline = $this->buildFulfillmentTimeline($order['order_status'], $order['created_at'], $order['updated_at']);
+
+        return [
+            'order_number' => $order['order_number'],
+            'order_status' => $order['order_status'],
+            'payment_status' => $order['payment_status'],
+            'payment_method' => strtoupper($order['payment_method']),
+            'customer_name' => $order['customer_name'],
+            'customer_email_masked' => $maskedEmail,
+            'customer_phone_masked' => $maskedPhone,
+            'delivery_destination' => "{$order['city']}, {$order['state']} - {$order['pincode']}",
+            'is_gift' => (bool) $order['is_gift'],
+            'subtotal' => (float) $order['subtotal'],
+            'discount_amount' => (float) $order['discount_amount'],
+            'shipping_fee' => (float) $order['shipping_fee'],
+            'total_amount' => (float) $order['total_amount'],
+            'items' => $order['items'],
+            'item_count' => array_sum(array_column($order['items'], 'quantity')),
+            'timeline' => $timeline,
+            'placed_at' => $order['created_at'],
+        ];
+    }
+
+    private function maskEmail(string $email): string
+    {
+        $parts = explode('@', $email);
+        if (count($parts) !== 2) {
+            return '***';
+        }
+        $name = $parts[0];
+        $domain = $parts[1];
+        $len = strlen($name);
+        if ($len <= 2) {
+            $maskedName = substr($name, 0, 1) . '*';
+        } else {
+            $maskedName = substr($name, 0, 1) . str_repeat('*', max(1, $len - 2)) . substr($name, -1);
+        }
+        return "{$maskedName}@{$domain}";
+    }
+
+    private function maskPhone(string $phone): string
+    {
+        $clean = preg_replace('/[^0-9]/', '', $phone);
+        if (strlen($clean) >= 10) {
+            return '+91 ******' . substr($clean, -4);
+        }
+        return '******' . substr($clean, -2);
+    }
+
+    private function buildFulfillmentTimeline(string $currentStatus, string $createdAt, string $updatedAt): array
+    {
+        $statuses = [
+            'placed' => ['title' => 'Order Placed & Confirmed', 'desc' => 'Your handcrafted bag order has been received.'],
+            'processing' => ['title' => 'Artisanal Preparation', 'desc' => 'Leather inspection, stitching verification & dust bag packing.'],
+            'shipped' => ['title' => 'Handed to Express Courier', 'desc' => 'Dispatched via Insured Air Cargo.'],
+            'delivered' => ['title' => 'Delivered to Doorstep', 'desc' => 'Package safely handed over to recipient.'],
+        ];
+
+        $orderOfStatuses = ['placed', 'processing', 'shipped', 'delivered'];
+        $currentIndex = array_search($currentStatus, $orderOfStatuses, true);
+        if ($currentIndex === false) {
+            $currentIndex = 0; // Default or cancelled
+        }
+
+        $timeline = [];
+        foreach ($orderOfStatuses as $idx => $stepKey) {
+            $step = $statuses[$stepKey];
+            $isCompleted = ($idx <= $currentIndex);
+            $isCurrent = ($idx === $currentIndex);
+
+            $timeline[] = [
+                'step' => $stepKey,
+                'title' => $step['title'],
+                'description' => $step['desc'],
+                'completed' => $isCompleted,
+                'current' => $isCurrent,
+                'timestamp' => ($idx === 0) ? $createdAt : ($isCurrent ? $updatedAt : null),
+            ];
+        }
+
+        return $timeline;
+    }
+
     private function generateUniqueOrderNumber(PDO $pdo): string
     {
         do {
