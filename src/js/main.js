@@ -230,11 +230,20 @@ function selectColorStory(shadeKey) {
 /* -------------------------------------------------------------
    Newsletter Handling
    ------------------------------------------------------------- */
-function handleNewsletterSubmit(e) {
+async function handleNewsletterSubmit(e) {
     e.preventDefault();
     const input = document.getElementById('newsletter-email');
     const feedback = document.getElementById('newsletter-feedback');
     if (input && input.value) {
+        const email = input.value.trim();
+        try {
+            if (typeof BalentoAPI !== 'undefined') {
+                await BalentoAPI.subscribeNewsletter(email, 'footer');
+            }
+        } catch (err) {
+            console.warn('API subscription fallback:', err);
+        }
+
         if (feedback) feedback.classList.remove('hidden');
         showToast("✓ Welcome to the Balento Inner Circle");
         input.value = '';

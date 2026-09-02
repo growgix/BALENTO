@@ -213,13 +213,27 @@ function closeQuickView() {
     }
 }
 
-function checkPincodeDelivery() {
+async function checkPincodeDelivery() {
     const input = document.getElementById('qv-pincode-input');
     const result = document.getElementById('qv-pincode-result');
     if (!input || !result) return;
 
     const pin = input.value.trim();
     if (pin.length === 6 && /^\d+$/.test(pin)) {
+        try {
+            if (typeof BalentoAPI !== 'undefined') {
+                const response = await BalentoAPI.checkPincode(pin);
+                if (response.success && response.data) {
+                    result.className = "text-xs font-body-md text-accent-sage mt-1.5";
+                    result.innerHTML = response.data.message || `✓ <strong>Express Delivery:</strong> ${response.data.estimated_days} business days to ${response.data.city || 'PIN ' + pin} • COD Available.`;
+                    result.classList.remove('hidden');
+                    return;
+                }
+            }
+        } catch (e) {
+            console.warn('API check fallback to local computation:', e);
+        }
+
         result.className = "text-xs font-body-md text-accent-sage mt-1.5";
         result.innerHTML = `✓ <strong>Express Delivery:</strong> 2 business days to PIN ${pin} via Air Cargo • COD &amp; 7-Day Returns Available.`;
         result.classList.remove('hidden');
