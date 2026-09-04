@@ -2,7 +2,7 @@
  * BALENTO Product Catalog Data Model
  * 5 Core Handcrafted Silhouettes with Rich Specifications
  */
-const PRODUCTS = [
+let PRODUCTS = [
     {
         id: "verona-tote",
         name: "Verona Tote",

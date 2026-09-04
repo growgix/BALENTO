@@ -91,25 +91,68 @@ $router->group(['prefix' => '/api'], function (Router $api) {
 // -----------------------------------------------------------------------------
 // Protected Admin Backoffice Routes
 // -----------------------------------------------------------------------------
-$router->group(['prefix' => '/api/admin', 'middleware' => new AuthMiddleware(['admin', 'manager'])], function (Router $admin) {
+$router->group(['prefix' => '/api/admin', 'middleware' => new AuthMiddleware(['admin', 'manager', 'staff'])], function (Router $admin) {
     // Profile & Diagnostics
     $admin->get('/me', [AdminController::class, 'me']);
+    $admin->put('/me/password', [AdminController::class, 'changePassword']);
     $admin->get('/dashboard/stats', [AdminController::class, 'dashboardStats']);
+    $admin->get('/analytics', [AdminController::class, 'analytics']);
 
     // Orders Management
     $admin->get('/orders', [AdminController::class, 'orders']);
+    $admin->get('/orders/{id}', [AdminController::class, 'showOrder']);
     $admin->put('/orders/{id}/status', [AdminController::class, 'updateOrderStatus']);
 
-    // Product Management (CRUD)
+    // Product Catalog Management (CRUD)
+    $admin->get('/products', [AdminController::class, 'products']);
+    $admin->get('/products/{id}', [AdminController::class, 'showProduct']);
     $admin->post('/products', [AdminController::class, 'createProduct']);
     $admin->put('/products/{id}', [AdminController::class, 'updateProduct']);
     $admin->delete('/products/{id}', [AdminController::class, 'deleteProduct']);
 
     // Inventory Control
+    $admin->get('/inventory', [AdminController::class, 'inventory']);
     $admin->put('/inventory/adjust', [AdminController::class, 'adjustInventory']);
 
+    // Categories Management
+    $admin->get('/categories', [AdminController::class, 'categories']);
+    $admin->post('/categories', [AdminController::class, 'createCategory']);
+    $admin->put('/categories/{id}', [AdminController::class, 'updateCategory']);
+    $admin->delete('/categories/{id}', [AdminController::class, 'deleteCategory']);
+
     // Coupons Management
+    $admin->get('/coupons', [AdminController::class, 'coupons']);
     $admin->post('/coupons', [AdminController::class, 'createCoupon']);
+    $admin->put('/coupons/{id}', [AdminController::class, 'updateCoupon']);
+    $admin->delete('/coupons/{id}', [AdminController::class, 'deleteCoupon']);
+
+    // Lookbook Management
+    $admin->get('/lookbook', [AdminController::class, 'lookbook']);
+    $admin->post('/lookbook', [AdminController::class, 'createLookbook']);
+    $admin->put('/lookbook/{id}', [AdminController::class, 'updateLookbook']);
+    $admin->delete('/lookbook/{id}', [AdminController::class, 'deleteLookbook']);
+
+    // Pincodes Management
+    $admin->get('/pincodes', [AdminController::class, 'pincodes']);
+    $admin->post('/pincodes', [AdminController::class, 'createPincode']);
+    $admin->put('/pincodes/{id}', [AdminController::class, 'updatePincode']);
+    $admin->delete('/pincodes/{id}', [AdminController::class, 'deletePincode']);
+
+    // Newsletter Subscribers
+    $admin->get('/newsletter', [AdminController::class, 'subscribers']);
+    $admin->get('/newsletter/export', [AdminController::class, 'exportSubscribers']);
+
+    // Admin Users (RBAC)
+    $admin->get('/users', [AdminController::class, 'adminUsers']);
+    $admin->post('/users', [AdminController::class, 'createAdminUser']);
+    $admin->put('/users/{id}', [AdminController::class, 'updateAdminUser']);
+    $admin->delete('/users/{id}', [AdminController::class, 'deleteAdminUser']);
+
+    // Audit Logs
+    $admin->get('/audit-logs', [AdminController::class, 'auditLogs']);
+
+    // Secure Image Upload
+    $admin->post('/upload', [AdminController::class, 'uploadImage']);
 });
 
 // 4. Dispatch Request & Emit Response

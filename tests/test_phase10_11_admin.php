@@ -74,6 +74,25 @@ $pdo->exec("
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
 
+    CREATE TABLE product_features (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        product_id INTEGER NOT NULL,
+        feature_text TEXT NOT NULL,
+        sort_order INTEGER DEFAULT 0,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE product_images (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        product_id INTEGER NOT NULL,
+        variant_id INTEGER,
+        image_url TEXT NOT NULL,
+        alt_text TEXT,
+        image_type TEXT DEFAULT 'gallery',
+        sort_order INTEGER DEFAULT 0,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
     CREATE TABLE orders (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         order_number TEXT NOT NULL UNIQUE,
@@ -107,9 +126,28 @@ $pdo->exec("
         usage_limit INTEGER,
         usage_count INTEGER DEFAULT 0,
         is_active INTEGER DEFAULT 1,
+        starts_at DATETIME,
         expires_at DATETIME,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE newsletter_subscribers (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        email TEXT NOT NULL UNIQUE,
+        is_active INTEGER DEFAULT 1
+    );
+
+    CREATE TABLE audit_logs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        admin_id INTEGER,
+        admin_username TEXT,
+        action TEXT,
+        entity_type TEXT,
+        entity_id TEXT,
+        details TEXT,
+        ip_address TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
 ");
 

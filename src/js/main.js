@@ -12,7 +12,50 @@ document.addEventListener('DOMContentLoaded', () => {
     loadWishlistState();
     renderProductGrid();
     initDrawersAndModals();
+    syncProductsFromBackend();
 });
+
+async function syncProductsFromBackend() {
+    if (typeof BalentoAPI !== 'undefined') {
+        try {
+            const res = await BalentoAPI.getProducts({ limit: 100 });
+            if (res.success && res.data && res.data.products && res.data.products.length > 0) {
+                PRODUCTS = res.data.products.map(p => ({
+                    id: p.slug,
+                    numeric_id: p.id,
+                    name: p.name,
+                    category: p.category_slug || (p.category_name ? p.category_name.toLowerCase() : 'tote'),
+                    price: Math.round(p.price),
+                    compare_at_price: p.compare_at_price ? Math.round(p.compare_at_price) : null,
+                    description: p.description,
+                    dimensions: p.dimensions || '38cm (W) × 30cm (H) × 14cm (D)',
+                    weight: p.weight || '680 grams',
+                    images: {
+                        primary: p.images?.find(i => i.image_type === 'primary')?.image_url || p.images?.[0]?.image_url || 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=900&q=80',
+                        hover: p.images?.find(i => i.image_type === 'hover')?.image_url || p.images?.[1]?.image_url || p.images?.[0]?.image_url || 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=80'
+                    },
+                    colors: (p.variants && p.variants.length > 0) ? p.variants.map(v => ({
+                        name: v.color_name,
+                        hex: v.color_hex,
+                        variant_id: v.id,
+                        stock: v.stock_quantity
+                    })) : [
+                        { name: "Black", hex: "#1c1b1b" },
+                        { name: "Cognac", hex: "#8B5A2B" },
+                        { name: "Coffee Brown", hex: "#4A3B32" }
+                    ],
+                    features: (p.features && p.features.length > 0) ? p.features.map(f => f.feature_text) : ["14\" Laptop Sleeve", "Magnetic Closure"],
+                    tag: p.tag
+                }));
+                if (typeof renderProductGrid === 'function') {
+                    renderProductGrid();
+                }
+            }
+        } catch (e) {
+            // Graceful fallback to default catalog
+        }
+    }
+}
 
 /* -------------------------------------------------------------
    Scroll Observer & Reveal Animations
