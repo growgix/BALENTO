@@ -1,9 +1,27 @@
+<?php
+declare(strict_types=1);
+
+// 1. Ensure trailing slash for accurate relative asset resolution
+$uri = $_SERVER['REQUEST_URI'] ?? '';
+$path = parse_url($uri, PHP_URL_PATH) ?? '';
+if (!str_ends_with($path, '/') && !str_ends_with($path, '.php')) {
+    $qs = $_SERVER['QUERY_STRING'] ?? '';
+    header('Location: ' . $path . '/' . ($qs ? '?' . $qs : ''), true, 301);
+    exit;
+}
+
+$baseHref = rtrim(dirname($_SERVER['SCRIPT_NAME'] ?? ''), '/\\') . '/';
+if ($baseHref === '//' || $baseHref === '\\') {
+    $baseHref = '/admin/';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BALENTO Backoffice — E-Commerce Administration</title>
+    <base href="<?php echo htmlspecialchars($baseHref, ENT_QUOTES, 'UTF-8'); ?>">
     <!-- Google Fonts for Quiet Luxury SaaS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,9 +34,9 @@
 <body>
 
     <!-- =======================================================================
-         1. LOGIN SCREEN (When Unauthenticated)
+         1. LOGIN SCREEN (Default Visible When Not Authenticated)
          ======================================================================= -->
-    <div id="login-screen" class="hidden">
+    <div id="login-screen">
         <div class="login-card">
             <div class="login-brand">BALENTO</div>
             <div class="login-sub">Executive Backoffice Login</div>
