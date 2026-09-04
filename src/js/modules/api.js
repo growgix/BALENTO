@@ -1,11 +1,33 @@
-/**
- * BALENTO Frontend REST API Client
- * High-performance fetch wrapper with error handling, base URL detection, and JSON parsing.
- */
 const BalentoAPI = (() => {
-    const API_BASE = window.location.origin.includes(':8000') 
-        ? `${window.location.origin}/api` 
-        : 'http://localhost:8000/api';
+    function detectApiBase() {
+        if (window.BALENTO_API_BASE) {
+            return window.BALENTO_API_BASE;
+        }
+        const origin = window.location.origin;
+        const path = window.location.pathname;
+
+        // Subdirectory check (e.g. XAMPP /project-name/...)
+        const lastSlash = path.lastIndexOf('/');
+        if (lastSlash > 0 && !path.includes('/api')) {
+            const subfolder = path.substring(0, lastSlash);
+            if (!subfolder.endsWith('/src') && !subfolder.endsWith('/public') && !subfolder.endsWith('/admin')) {
+                return `${origin}${subfolder}/api`;
+            }
+        }
+
+        if (origin.includes(':8000')) {
+            return `${origin}/api`;
+        }
+
+        // Live Server / VS Code preview fallback to standard PHP port
+        if (origin.includes(':5500') || origin.includes(':3000') || origin.includes(':5173')) {
+            return 'http://localhost:8000/api';
+        }
+
+        return '/api';
+    }
+
+    const API_BASE = detectApiBase();
 
     async function request(endpoint, options = {}) {
         const url = `${API_BASE}${endpoint}`;
@@ -21,7 +43,20 @@ const BalentoAPI = (() => {
                 headers
             });
 
-            const json = await response.json();
+            const contentType = response.headers.get('content-type') || '';
+            let json;
+            if (contentType.includes('application/json')) {
+                json = await response.json();
+            } else {
+                const text = await response.text();
+                try {
+                    json = JSON.parse(text);
+                } catch (e) {
+                    console.warn(`[BalentoAPI Non-JSON Response from ${url}]:`, text.substring(0, 200));
+                    throw new Error(`Server returned status ${response.status} with non-JSON response.`);
+                }
+            }
+
             if (!response.ok) {
                 const errorMsg = json.message || 'An error occurred during the request.';
                 throw new Error(errorMsg);

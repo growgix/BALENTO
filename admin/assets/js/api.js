@@ -6,10 +6,35 @@ const AdminAPI = (() => {
     const TOKEN_KEY = 'balento_admin_jwt';
     const USER_KEY = 'balento_admin_user';
 
-    // Auto-detect base API endpoint
-    const API_BASE = window.location.origin.includes(':8000')
-        ? `${window.location.origin}/api/admin`
-        : '/api/admin';
+    // Dynamic Base URL Detection
+    function getApiBase() {
+        if (window.BALENTO_ADMIN_API_BASE) {
+            return window.BALENTO_ADMIN_API_BASE;
+        }
+        const origin = window.location.origin;
+        const path = window.location.pathname;
+
+        // If path contains /admin, extract parent path (for XAMPP subdirectories e.g. /my-project/admin)
+        const adminIdx = path.indexOf('/admin');
+        if (adminIdx > 0) {
+            const subfolder = path.substring(0, adminIdx);
+            return `${origin}${subfolder}/api/admin`;
+        }
+
+        // Standard PHP server port 8000
+        if (origin.includes(':8000')) {
+            return `${origin}/api/admin`;
+        }
+
+        // Live Server / static dev server fallback to standard PHP port
+        if (origin.includes(':5500') || origin.includes(':3000') || origin.includes(':5173')) {
+            return 'http://localhost:8000/api/admin';
+        }
+
+        return '/api/admin';
+    }
+
+    const API_BASE = getApiBase();
 
     function getToken() {
         return localStorage.getItem(TOKEN_KEY) || sessionStorage.getItem(TOKEN_KEY);
@@ -76,7 +101,26 @@ const AdminAPI = (() => {
                 return response.text();
             }
 
-            const json = await response.json();
+            let json;
+            if (contentType.includes('application/json')) {
+                json = await response.json();
+            } else {
+                const text = await response.text();
+                try {
+                    json = JSON.parse(text);
+                } catch (parseErr) {
+                    console.error('[AdminAPI Non-JSON Response]', {
+                        status: response.status,
+                        url,
+                        preview: text.substring(0, 300)
+                    });
+                    throw new Error(
+                        `Server returned HTML/text instead of JSON (${response.status} ${response.statusText}). ` +
+                        `Please verify the PHP server is running with 'php -S localhost:8000 router.php'.`
+                    );
+                }
+            }
+
             if (!response.ok) {
                 const errorMsg = json.message || 'An administrative error occurred.';
                 const err = new Error(errorMsg);
