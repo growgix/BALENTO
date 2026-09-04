@@ -43,11 +43,16 @@ final class Request
         
         $path = parse_url($uri, PHP_URL_PATH) ?? '/';
         
-        // Strip base folder if running in subdirectory
-        $scriptName = $_SERVER['SCRIPT_NAME'] ?? '';
-        $baseFolder = dirname($scriptName);
-        if ($baseFolder !== '/' && $baseFolder !== '\\' && str_starts_with($path, $baseFolder)) {
-            $path = substr($path, strlen($baseFolder));
+        // Normalize /api routes regardless of subfolder depth
+        if (($apiPos = strpos($path, '/api')) !== false) {
+            $path = substr($path, $apiPos);
+        } else {
+            // Strip base folder if running in subdirectory
+            $scriptName = $_SERVER['SCRIPT_NAME'] ?? '';
+            $baseFolder = str_replace('\\', '/', dirname($scriptName));
+            if ($baseFolder !== '/' && $baseFolder !== '.' && str_starts_with($path, $baseFolder)) {
+                $path = substr($path, strlen($baseFolder));
+            }
         }
 
         $headers = self::extractHeaders();

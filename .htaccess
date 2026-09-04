@@ -1,12 +1,10 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /
 
     # Route /api to public/index.php
-    RewriteCond %{REQUEST_URI} ^/api [NC]
-    RewriteRule ^api(.*)$ public/index.php [QSA,L]
+    RewriteRule ^(.*)api(.*)$ public/index.php [QSA,L]
 
-    # Handle admin index
+    # Handle admin folder index
     RewriteRule ^admin/?$ admin/index.php [L]
 
     # Serve existing files and directories directly
