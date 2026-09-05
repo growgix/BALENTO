@@ -1,8 +1,11 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # Forward HTTP Authorization Header in Apache
+    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
     # Route /api to public/index.php
-    RewriteRule ^(.*)api(.*)$ public/index.php [QSA,L]
+    RewriteRule ^(.*)api(.*)$ public/index.php [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},QSA,L]
 
     # Handle admin folder index
     RewriteRule ^admin/?$ admin/index.php [L]

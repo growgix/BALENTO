@@ -54,7 +54,7 @@ final class Database
                 'database' => $config['database'] ?? 'unknown',
             ]);
 
-            throw new RuntimeException("Database connection error. Please verify database credentials.", (int) $e->getCode(), $e);
+            throw new RuntimeException("Database connection error: " . $e->getMessage() . ". Please verify database credentials.", (int) $e->getCode(), $e);
         }
     }
 
@@ -111,35 +111,37 @@ final class Database
         }
 
         $host = $config['host'] ?? '127.0.0.1';
-        $port = $config['port'] ?? 3306;
+        $port = (int) ($config['port'] ?? 3307);
         $db = $config['database'] ?? 'balento_db';
         $charset = $config['charset'] ?? 'utf8mb4';
-
-        $dsn = "mysql:host={$host};port={$port};dbname={$db};charset={$charset}";
         $username = $config['username'] ?? 'root';
         $password = $config['password'] ?? '';
         $options = $config['options'] ?? [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_EMULATE_PREPARES => false,
-            PDO::ATTR_TIMEOUT => 5,
+            PDO::ATTR_TIMEOUT => 3,
         ];
 
-        try {
-            return new PDO($dsn, $username, $password, $options);
-        } catch (PDOException $e) {
-            // Auto-fallback between standard MySQL and XAMPP MySQL ports (3306 <-> 3307) on localhost
-            if (($host === '127.0.0.1' || $host === 'localhost') && ($port === 3306 || $port === 3307)) {
-                $fallbackPort = ($port === 3306) ? 3307 : 3306;
-                $fallbackDsn = "mysql:host={$host};port={$fallbackPort};dbname={$db};charset={$charset}";
-                try {
-                    return new PDO($fallbackDsn, $username, $password, $options);
-                } catch (PDOException) {
-                    // Ignore fallback failure and throw original
-                }
-            }
-            throw $e;
+        // Ports to try (primary port first, then fallbacks on localhost)
+        $portsToTry = [$port];
+        if ($host === '127.0.0.1' || $host === 'localhost') {
+            if (!in_array(3307, $portsToTry, true)) $portsToTry[] = 3307;
+            if (!in_array(3306, $portsToTry, true)) $portsToTry[] = 3306;
+            if (!in_array(3308, $portsToTry, true)) $portsToTry[] = 3308;
         }
+
+        $lastException = null;
+        foreach ($portsToTry as $p) {
+            $dsn = "mysql:host={$host};port={$p};dbname={$db};charset={$charset}";
+            try {
+                return new PDO($dsn, $username, $password, $options);
+            } catch (PDOException $e) {
+                $lastException = $e;
+            }
+        }
+
+        throw $lastException ?? new PDOException("Unable to connect to MySQL on candidate ports (" . implode(', ', $portsToTry) . ").");
     }
 
     /**

@@ -1,6 +1,7 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ index.php [QSA,L]
+    RewriteRule ^ index.php [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},QSA,L]
 </IfModule>

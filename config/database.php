@@ -10,7 +10,7 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'host' => Env::get('DB_HOST', '127.0.0.1'),
-            'port' => (int) Env::get('DB_PORT', '3306'),
+            'port' => (int) Env::get('DB_PORT', '3307'),
             'database' => Env::get('DB_DATABASE', 'balento_db'),
             'username' => Env::get('DB_USERNAME', 'root'),
             'password' => Env::get('DB_PASSWORD', ''),

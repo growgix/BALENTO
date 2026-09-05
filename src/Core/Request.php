@@ -167,15 +167,46 @@ final class Request
     private static function extractHeaders(): array
     {
         $headers = [];
+
+        // 1. Native Apache request headers (XAMPP / Apache / FastCGI)
+        if (function_exists('getallheaders')) {
+            $allHeaders = getallheaders();
+            if (is_array($allHeaders)) {
+                foreach ($allHeaders as $k => $v) {
+                    $headers[strtolower(str_replace('_', '-', (string) $k))] = (string) $v;
+                }
+            }
+        }
+
+        // 2. Scan $_SERVER for HTTP_* headers and standard content headers
         foreach ($_SERVER as $key => $value) {
             if (str_starts_with($key, 'HTTP_')) {
                 $name = strtolower(str_replace('_', '-', substr($key, 5)));
-                $headers[$name] = (string) $value;
+                if (!isset($headers[$name])) {
+                    $headers[$name] = (string) $value;
+                }
             } elseif (in_array($key, ['CONTENT_TYPE', 'CONTENT_LENGTH', 'CONTENT_MD5'], true)) {
                 $name = strtolower(str_replace('_', '-', $key));
-                $headers[$name] = (string) $value;
+                if (!isset($headers[$name])) {
+                    $headers[$name] = (string) $value;
+                }
             }
         }
+
+        // 3. Fallbacks for Apache mod_rewrite / FastCGI stripped Authorization headers
+        if (!isset($headers['authorization']) || trim($headers['authorization']) === '') {
+            if (!empty($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+                $headers['authorization'] = (string) $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
+            } elseif (!empty($_SERVER['REDIRECT_REDIRECT_HTTP_AUTHORIZATION'])) {
+                $headers['authorization'] = (string) $_SERVER['REDIRECT_REDIRECT_HTTP_AUTHORIZATION'];
+            } elseif (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
+                $headers['authorization'] = (string) $_SERVER['HTTP_AUTHORIZATION'];
+            } elseif (!empty($_SERVER['PHP_AUTH_USER'])) {
+                $basicAuth = base64_encode($_SERVER['PHP_AUTH_USER'] . ':' . ($_SERVER['PHP_AUTH_PW'] ?? ''));
+                $headers['authorization'] = 'Basic ' . $basicAuth;
+            }
+        }
+
         return $headers;
     }
 }

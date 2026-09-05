@@ -92,8 +92,10 @@ const AdminAPI = (() => {
 
             if (response.status === 401 && endpoint !== '/login') {
                 clearSession();
-                window.location.reload();
-                throw new Error('Session expired. Please log in again.');
+                if (typeof AdminAuth !== 'undefined' && typeof AdminAuth.showLogin === 'function') {
+                    AdminAuth.showLogin();
+                }
+                throw new Error('Session expired or unauthorized. Please log in again.');
             }
 
             const contentType = response.headers.get('content-type') || '';
