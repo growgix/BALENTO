@@ -125,7 +125,21 @@ final class Database
             PDO::ATTR_TIMEOUT => 5,
         ];
 
-        return new PDO($dsn, $username, $password, $options);
+        try {
+            return new PDO($dsn, $username, $password, $options);
+        } catch (PDOException $e) {
+            // Auto-fallback between standard MySQL and XAMPP MySQL ports (3306 <-> 3307) on localhost
+            if (($host === '127.0.0.1' || $host === 'localhost') && ($port === 3306 || $port === 3307)) {
+                $fallbackPort = ($port === 3306) ? 3307 : 3306;
+                $fallbackDsn = "mysql:host={$host};port={$fallbackPort};dbname={$db};charset={$charset}";
+                try {
+                    return new PDO($fallbackDsn, $username, $password, $options);
+                } catch (PDOException) {
+                    // Ignore fallback failure and throw original
+                }
+            }
+            throw $e;
+        }
     }
 
     /**

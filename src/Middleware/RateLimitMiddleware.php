@@ -26,11 +26,11 @@ final class RateLimitMiddleware implements MiddlewareInterface
     public static function forRoute(string $routeType): self
     {
         $limit = match ($routeType) {
-            'login' => (int) Env::get('RATE_LIMIT_LOGIN', 5),
-            'checkout' => (int) Env::get('RATE_LIMIT_CHECKOUT', 10),
-            'pincode' => (int) Env::get('RATE_LIMIT_PINCODE', 60),
-            'coupon' => (int) Env::get('RATE_LIMIT_COUPON', 30),
-            default => (int) Env::get('RATE_LIMIT_GENERAL', 120),
+            'login' => (int) Env::get('RATE_LIMIT_LOGIN', 60),
+            'checkout' => (int) Env::get('RATE_LIMIT_CHECKOUT', 30),
+            'pincode' => (int) Env::get('RATE_LIMIT_PINCODE', 120),
+            'coupon' => (int) Env::get('RATE_LIMIT_COUPON', 60),
+            default => (int) Env::get('RATE_LIMIT_GENERAL', 300),
         };
 
         return new self($limit, 60);
